@@ -9,6 +9,14 @@ class Customer extends Model
 
     use SoftDelete;
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function (Customer $customer) {
+            //we can send welcome email here
+        });
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -20,14 +28,16 @@ class Customer extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function bookings(){
+    public function bookings()
+    {
         return $this->hasMany(Booking::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function country(){
+    public function country()
+    {
         return $this->belongsTo(Country::class);
     }
 
