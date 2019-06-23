@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public static $USER_TYPES = ['admin','customer'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,4 +29,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Returns the customer associated to the user or null if user is not a customer
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne | null
+     */
+    public function customer(){
+        return $this->hasOne(Customer::class);
+    }
+
 }
