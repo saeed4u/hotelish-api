@@ -12,7 +12,7 @@ namespace App\Repo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 
-interface Crud
+interface Repo
 {
     /**
      * @param Model $model

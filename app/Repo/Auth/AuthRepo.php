@@ -11,14 +11,14 @@ namespace App\Repo;
 
 use App\User;
 
-interface AuthRepo extends Crud
+interface AuthRepo extends Repo
 {
     /**
      * @param $email
      * @param $password
      * @return User
      */
-    function login($email, $password): User;
+    function login($email, $password, $ip = ''): User;
 
     /**
      * @param $email
@@ -34,8 +34,8 @@ interface AuthRepo extends Crud
     function logout(User $user): bool;
 
     /**
-     * @param $email
+     * @param User $user
      * @return bool
      */
-    function resetPassword($email): bool;
+    function resetPassword(User $user): bool;
 }
