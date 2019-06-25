@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class UpdateHotelRequest extends BaseRequest
+class RoomRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -11,7 +11,6 @@ class UpdateHotelRequest extends BaseRequest
      */
     public function authorize()
     {
-        //api.auth middleware will take care of auth before request gets here
         return true;
     }
 
@@ -24,21 +23,14 @@ class UpdateHotelRequest extends BaseRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
-            'address' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'country_id' => 'required|exists:countries,id',
-            'zip_code' => 'required'
+            'room_type_id' => 'required|exists:room_types,id',
         ];
     }
 
     public function filters()
     {
         return [
-            'email' => 'trim|lowercase',
             'name' => 'trim|escape',
-            'city' => 'trim|lowercase|escape',
         ];
     }
 }

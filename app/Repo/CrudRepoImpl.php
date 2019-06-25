@@ -9,10 +9,11 @@
 namespace App\Repo\Hotel;
 
 
+use App\Repo\Repo;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class HotelRepoImpl implements HotelRepo
+class CrudRepoImpl implements Repo
 {
 
     /**
