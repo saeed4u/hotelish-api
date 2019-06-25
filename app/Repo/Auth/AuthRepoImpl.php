@@ -32,13 +32,15 @@ class AuthRepoImpl implements AuthRepo
     /**
      * @param $email
      * @param $password
+     * @param string $type
      * @return User
      */
-    function register($email, $password): User
+    function register($email, $password, $type = 'customer'): User
     {
         $user = new User();
         $user->email = $email;
         $user->password = $password;
+        $user->user_type = $type;
         if ($this->create($user)) {
             return $user;
         }

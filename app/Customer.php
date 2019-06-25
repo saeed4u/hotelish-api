@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
 
-    use SoftDelete;
+   // use SoftDelete;
 
     protected static function boot()
     {

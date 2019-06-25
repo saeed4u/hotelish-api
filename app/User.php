@@ -36,7 +36,7 @@ class User extends Authenticatable
     {
         parent::boot();
         static::created(function (User $user) {
-            if ($user->type === 'customer') {
+            if ($user->user_type === 'customer') {
                 $customer = new Customer();
                 $customer->user_id = $user->id;
                 $customer->phone = '';
