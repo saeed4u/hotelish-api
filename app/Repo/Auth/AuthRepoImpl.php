@@ -13,6 +13,7 @@ use App\Repo\AuthRepo;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\Hash;
 
 class AuthRepoImpl implements AuthRepo
 {
@@ -23,10 +24,13 @@ class AuthRepoImpl implements AuthRepo
      * @param string $api
      * @return User
      */
-    function login($email, $password, $api = ''): User
+    function login($email, $password, $api = '')
     {
-        $auth = auth('api');
-        return $auth->attempt(['email' => $email, 'password' => $password]);
+        $auth = auth();
+        if($auth->attempt(['email' => $email, 'password' => $password])){
+            return $auth->user();
+        }
+        return null;
     }
 
     /**
@@ -35,11 +39,11 @@ class AuthRepoImpl implements AuthRepo
      * @param string $type
      * @return User
      */
-    function register($email, $password, $type = 'customer'): User
+    function register($email, $password, $type = 'customer')
     {
         $user = new User();
         $user->email = $email;
-        $user->password = $password;
+        $user->password = Hash::make($password);
         $user->user_type = $type;
         if ($this->create($user)) {
             return $user;
@@ -62,7 +66,7 @@ class AuthRepoImpl implements AuthRepo
      */
     function logout(User $user): bool
     {
-        $auth = auth('api');
+        $auth = auth();
         $auth->logout();
         return true;
     }
