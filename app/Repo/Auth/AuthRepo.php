@@ -30,10 +30,9 @@ interface AuthRepo extends Repo
     function register($email, $password, $type = 'customer');
 
     /**
-     * @param User $user
      * @return bool
      */
-    function logout(User $user): bool;
+    function logout(): bool;
 
     /**
      * @param User $user

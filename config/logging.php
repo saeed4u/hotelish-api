@@ -50,6 +50,19 @@ return [
             'level' => 'debug',
             'days' => 7,
         ],
+        'auth' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/auth/app-auth.log'),
+            'level' => 'info',
+            'days' => 7,
+        ],
+        'error' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/errors/app-error.log'),
+            'level' => 'error',
+            'days' => 7,
+        ],
+
         'queries' => [
             'driver' => 'daily',
             'path' => storage_path('logs/queries/app-queries.log'),

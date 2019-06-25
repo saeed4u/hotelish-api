@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Repo\Auth\AuthRepoImpl;
 use App\Repo\AuthRepo;
+use App\Service\AuthService;
 use App\Utils\Logging;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -11,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     use Logging;
+
     /**
      * Bootstrap any application services.
      *
@@ -36,5 +38,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AuthRepo::class, AuthRepoImpl::class);
+        $this->app->singleton(AuthService::class, function () {
+            return new AuthService($this->app->make(AuthRepo::class));
+        });
     }
 }
