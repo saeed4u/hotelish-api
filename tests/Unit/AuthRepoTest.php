@@ -21,10 +21,7 @@ class AuthRepoTest extends TestCase
 
     public function testRegisterCustomerExpectSuccess()
     {
-        $email = 'saeed@codeline.com';
-        $password = 'randompassword';
-        $this->user = $this->authRepo->register($email, $password);
-
+        $this->registerUser();
         self::assertNotNull($this->user);
         self::assertIsObject($this->user);
 
@@ -34,6 +31,25 @@ class AuthRepoTest extends TestCase
         self::assertEquals($this->user->id, $customer->user_id);
     }
 
+    private function registerUser($email = 'saeed@codeline.com', $password = 'randompassword')
+    {
+        $this->user = $this->authRepo->register($email, $password);
+    }
+
+    public function testLoginExpectSuccess()
+    {
+        $this->registerUser();
+        $loggedInUser = $this->authRepo->login('saeed@codeline.com', 'randompassword');
+        self::assertNotNull($loggedInUser);
+        self::assertEquals($this->user->id, $loggedInUser->id);
+        self::assertEquals($this->user->customer, $loggedInUser->customer);
+    }
+
+    public function testLoginExpectFailure(){
+        $this->registerUser();
+        $loggedInUser = $this->authRepo->login('saeed@codeline.com', 'wrongrandompassword');
+        self::assertNull($loggedInUser);
+    }
 
     protected function setUp()
     {

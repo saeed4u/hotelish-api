@@ -19,7 +19,7 @@ interface AuthRepo extends Repo
      * @param string $ip
      * @return User
      */
-    function login($email, $password, $ip = ''): User;
+    function login($email, $password, $ip = '');
 
     /**
      * @param $email
@@ -27,7 +27,7 @@ interface AuthRepo extends Repo
      * @param $type
      * @return User
      */
-    function register($email, $password, $type = 'customer'): User;
+    function register($email, $password, $type = 'customer');
 
     /**
      * @param User $user
