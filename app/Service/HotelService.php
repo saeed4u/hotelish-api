@@ -12,6 +12,7 @@ namespace App\Service;
 use App\Hotel;
 use App\Http\Resources\HotelResource;
 use App\Repo\Hotel\HotelRepo;
+use App\Repo\Repo;
 use App\Utils\ApiResponse;
 use App\Utils\Logging;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,15 +21,15 @@ class HotelService
 {
     use ApiResponse, Logging;
     /**
-     * @var HotelRepo $repo
+     * @var Repo $repo
      */
     private $repo;
 
     /**
      * HotelService constructor.
-     * @param HotelRepo $repo
+     * @param Repo $repo
      */
-    public function __construct(HotelRepo $repo)
+    public function __construct(Repo $repo)
     {
         $this->repo = $repo;
     }
