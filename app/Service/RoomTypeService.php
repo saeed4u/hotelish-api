@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: brasaeed
- * Date: 2019-06-25
- * Time: 23:38
+ * Date: 2019-06-26
+ * Time: 01:05
  */
 
 namespace App\Service;
 
 
-use App\Hotel;
-use App\Http\Resources\RoomResource;
+use App\Http\Resources\RoomTypeResource;
 use App\Repo\Repo;
 use App\Room;
+use App\RoomType;
 
-class RoomService extends CrudService
+class RoomTypeService extends CrudService
 {
     /**
      * RoomService constructor.
@@ -29,16 +29,14 @@ class RoomService extends CrudService
      * @param array $payload
      * @return \Illuminate\Http\JsonResponse
      */
-    public function addRoom(array $payload)
+    public function addRoomType(array $payload)
     {
         try {
-            $room = new Room();
-            $room->name = $payload['name'];
-            $room->room_type_id = $payload['room_type_id'];
-            $room->added_by = auth()->id();
-            $room->hotel_id = Hotel::first()->id;
-            if ($this->repo->create($room)) {
-                return $this->success('Room created successfully', ['room' => new RoomResource($room->refresh())]);
+            $roomType = new RoomType();
+            $roomType->name = $payload['name'];
+            $roomType->added_by = auth()->id();
+            if ($this->repo->create($roomType)) {
+                return $this->success('Room Type created successfully', ['room_type' => new RoomTypeResource($roomType->refresh())]);
             }
         } catch (\Exception $exception) {
             $this->logException($exception);
@@ -47,12 +45,12 @@ class RoomService extends CrudService
     }
 
     /**
-     * @param $roomId
+     * @param $roomTypeId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getRoom($roomId)
+    public function getRoomType($roomTypeId)
     {
-        return $this->success('Room retrieved', new RoomResource(Room::find($roomId)));
+        return $this->success('Room type retrieved', new RoomTypeResource(Room::find($roomTypeId)));
     }
 
     /**
@@ -60,20 +58,20 @@ class RoomService extends CrudService
      */
     public function getAll()
     {
-        $rooms = Room::paginate(15);
-        return $this->success('Rooms retrieved', ['rooms' => RoomResource::collection($rooms)]);
+        $roomTypes = RoomType::paginate(15);
+        return $this->success('Rooms retrieved', ['room_types' => RoomTypeResource::collection($roomTypes)]);
     }
 
     /**
-     * @param Room $room
+     * @param RoomType $roomType
      * @param array $payload
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateRoom(Room $room, array $payload)
+    public function updateRoomType(RoomType $roomType, array $payload)
     {
         try {
-            if ($this->repo->update($room, $payload)) {
-                return $this->success('Room updated successfully', ['room' => new RoomResource($room->refresh())]);
+            if ($this->repo->update($roomType, $payload)) {
+                return $this->success('Room updated successfully', ['room' => new RoomTypeResource($roomType->refresh())]);
             }
         } catch (\Exception $exception) {
             $this->logException($exception);
@@ -82,13 +80,13 @@ class RoomService extends CrudService
     }
 
     /**
-     * @param Room $room
+     * @param RoomType $roomType
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteRoom(Room $room)
+    public function deleteRoomType(RoomType $roomType)
     {
         try {
-            if ($this->repo->delete($room)) {
+            if ($this->repo->delete($roomType)) {
                 return $this->success();
             }
         } catch (\Exception $exception) {
@@ -96,5 +94,4 @@ class RoomService extends CrudService
         }
         return $this->badGateway();
     }
-
 }
