@@ -4,10 +4,10 @@ namespace Tests\Feature;
 
 use App\Repo\AuthRepo;
 use App\User;
-use Tests\AuthBaseTest;
+use Tests\BaseAuthTest;
 use Tests\TestCase;
 
-class AuthRepoTest extends AuthBaseTest
+class AuthRepoTest extends BaseAuthTest
 {
 
 

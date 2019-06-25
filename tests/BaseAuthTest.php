@@ -12,7 +12,7 @@ namespace Tests;
 use App\Repo\AuthRepo;
 use App\User;
 
-class AuthBaseTest extends TestCase
+class BaseAuthTest extends TestCase
 {
 
     /**

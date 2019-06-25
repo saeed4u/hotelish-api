@@ -5,9 +5,9 @@ namespace Tests\Unit;
 use App\Service\AuthService;
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Tests\AuthBaseTest;
+use Tests\BaseAuthTest;
 
-class AuthServiceTest extends AuthBaseTest
+class AuthServiceTest extends BaseAuthTest
 {
     /**
      * @var AuthService $service

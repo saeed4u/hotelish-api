@@ -11,7 +11,7 @@ class RegistrationRequest extends BaseRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,9 +37,9 @@ class RegistrationRequest extends BaseRequest
     public function messages()
     {
         return [
-            'email.required' => 'Your email is required to login',
+            'email.required' => 'Your email is required for registration',
             'email.unique' => 'Sorry, that email is already in our system!',
-            'password.required' => 'Your password is required to login'
+            'password.required' => 'Your password is required for registration'
         ];
     }
 }
