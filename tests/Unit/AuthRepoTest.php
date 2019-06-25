@@ -17,11 +17,6 @@ class AuthRepoTest extends BaseAuthTest
         $this->registerUser();
         self::assertNotNull($this->user);
         self::assertIsObject($this->user);
-
-        $customer = $this->user->customer;
-
-        self::assertNotNull($customer);
-        self::assertEquals($this->user->id, $customer->user_id);
     }
 
 
@@ -32,7 +27,6 @@ class AuthRepoTest extends BaseAuthTest
         self::assertNotNull($loggedInUser);
         self::assertIsString($loggedInUser->token);
         self::assertEquals($this->user->id, $loggedInUser->id);
-        self::assertEquals($this->user->customer, $loggedInUser->customer);
     }
 
     public function testLoginExpectFailure()

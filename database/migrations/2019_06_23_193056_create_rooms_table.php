@@ -18,11 +18,9 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('hotel_id');
             $table->unsignedInteger('room_type_id');
-            $table->unsignedInteger('room_capacity_id');
             $table->unsignedInteger('added_by')->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('room_capacity_id')->references('id')->on('room_capacities')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('added_by')->references('id')->on('users')->onDelete('SET NULL');
             $table->softDeletes();
             $table->timestamps();
