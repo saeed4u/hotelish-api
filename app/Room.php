@@ -24,14 +24,6 @@ class Room extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function capacity()
-    {
-        return $this->belongsTo(RoomCapacity::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function type()
     {
         return $this->belongsTo(RoomType::class);
