@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('login_attempts')->default(0);
             $table->boolean('status')->default(1);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
