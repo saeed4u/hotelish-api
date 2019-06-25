@@ -9,8 +9,8 @@
 namespace App\Repo;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 
 interface Repo
 {
@@ -28,9 +28,10 @@ interface Repo
 
     /**
      * @param Model $model
+     * @param $attributes
      * @return bool
      */
-    function update(Model $model): bool;
+    function update(Model $model, array $attributes): bool;
 
     /**
      * @param Model $model

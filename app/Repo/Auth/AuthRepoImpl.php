@@ -13,8 +13,8 @@ use App\Repo\AuthRepo;
 use App\User;
 use App\Utils\Constants;
 use App\Utils\Logging;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Hash;
 
 class AuthRepoImpl implements AuthRepo
@@ -29,7 +29,7 @@ class AuthRepoImpl implements AuthRepo
      */
     function login($email, $password, $ip = '')
     {
-        $this->logAuth("Logging in user{$email} coming from{$ip}");
+        $this->logAuth("Logging in user {$email} coming from {$ip}");
         $auth = auth();
         if ($token = $auth->attempt(['email' => $email, 'password' => $password])) {
             $user = $auth->user();
@@ -42,7 +42,7 @@ class AuthRepoImpl implements AuthRepo
             }
             $user->last_login = now();
             $user->last_ip = $ip;
-            $this->update($user);
+            $user->save();
             $user->token = $token;
             return $user;
         }
@@ -53,24 +53,26 @@ class AuthRepoImpl implements AuthRepo
          */
         $user = User::where('email', $email)->first();
         if ($user) {
+            $this->logAuth("User found.... increasing attempts");
             $login_attempts = ++$user->login_attempts;
             $user->login_attempts = $login_attempts;
 
             if ($login_attempts === env('MAXIMUM_LOGIN_ATTEMPTS', 5)) {
                 $user->status = static::$USER_ACCOUNT_BLOCKED_TOO_MANY_LOGIN_ATTEMPTS;
             }
-            $this->update($user);
+            $this->save($user);
         }
         return null;
     }
 
     /**
      * @param Model $model
+     * @param $attributes
      * @return bool
      */
-    function update(Model $model): bool
+    function update(Model $model,array $attributes): bool
     {
-        return $model->update();
+        return $model->update($attributes);
     }
 
     /**

@@ -2,13 +2,24 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hotel extends Model
 {
-    use AddedBy, SoftDelete;
+    use AddedBy, SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'address',
+        'state',
+        'country_id',
+        'zip_code',
+        'phone_number'
+    ];
+
+    protected $hidden = ['created_at','country_id','updated_at','deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -18,13 +29,6 @@ class Hotel extends Model
         return $this->belongsTo(Country::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -35,18 +39,11 @@ class Hotel extends Model
     }
 
     /**
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images()
     {
-        /**
-         * @var Collection $images
-         */
-        $images = $this->hasMany(HotelImage::class);
-        $images->flatMap(function (HotelImage $image) {
-            $image->image = Storage::url($image->image);
-            return $image;
-        });
-        return $images;
+        return $this->hasMany(HotelImage::class);
+
     }
 }

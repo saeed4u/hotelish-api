@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoomType extends Model
 {
-    use AddedBy, SoftDelete;
+    use AddedBy, SoftDeletes;
     //
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

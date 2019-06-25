@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use App\Repo\Auth\AuthRepoImpl;
 use App\Repo\AuthRepo;
+use App\Repo\Hotel\HotelRepo;
+use App\Repo\Hotel\HotelRepoImpl;
 use App\Service\AuthService;
+use App\Service\HotelService;
 use App\Utils\Logging;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -38,8 +41,12 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AuthRepo::class, AuthRepoImpl::class);
+        $this->app->singleton(HotelRepo::class, HotelRepoImpl::class);
         $this->app->singleton(AuthService::class, function () {
             return new AuthService($this->app->make(AuthRepo::class));
+        });
+        $this->app->singleton(HotelService::class, function () {
+            return new HotelService($this->app->make(HotelRepo::class));
         });
     }
 }
