@@ -10,6 +10,7 @@ namespace App\Utils;
 
 
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 trait Logging
@@ -33,5 +34,14 @@ trait Logging
             'trace' => $exception->getTraceAsString(),
             'code' => $exception->getCode(),
         ]);
+    }
+
+    function logRequest(Request $request)
+    {
+        $id = $request->req_id;
+        $path = $request->path();
+        $method = $request->method();
+        $body = json_encode($request->json()->all());
+        Log::channel('request_logs')->info("Request info: ID =  $id; Path = $path; Method = $method; Payload = $body");
     }
 }

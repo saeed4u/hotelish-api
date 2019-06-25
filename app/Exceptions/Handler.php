@@ -2,11 +2,16 @@
 
 namespace App\Exceptions;
 
+use App\Utils\ApiResponse;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponse;
     /**
      * A list of the exception types that are not reported.
      *
@@ -29,7 +34,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -40,12 +45,21 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
+        if (stripos(request()->fullUrl(), 'api')) {
+            if ($exception instanceof MethodNotAllowedHttpException) {
+                return $this->methodNotAllowed();
+            } elseif ($exception instanceof NotFoundHttpException) {
+                return $this->notFound('Not found', $request->path());
+            } elseif ($exception instanceof UnauthorizedHttpException) {
+                return $this->unauthorised('Invalid access token provided');
+            }
+        }
         return parent::render($request, $exception);
     }
 }

@@ -62,6 +62,12 @@ return [
             'level' => 'error',
             'days' => 7,
         ],
+        'request_logs' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/requests/app-request.log'),
+            'level' => 'info',
+            'days' => 7,
+        ],
 
         'queries' => [
             'driver' => 'daily',
