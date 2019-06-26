@@ -6,9 +6,12 @@ use App\Repo\Auth\AuthRepoImpl;
 use App\Repo\AuthRepo;
 use App\Repo\Hotel\CrudRepoImpl;
 use App\Repo\Hotel\HotelRepo;
+use App\Repo\PricingRepo;
 use App\Service\AuthService;
 use App\Service\HotelService;
+use App\Service\PricingService;
 use App\Service\RoomService;
+use App\Service\RoomTypeService;
 use App\Utils\Logging;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(AuthRepo::class, AuthRepoImpl::class);
         $this->app->singleton('crud_repo', CrudRepoImpl::class);
+        $this->app->singleton('pricing_repo', PricingRepo::class);
 
         $this->app->singleton(AuthService::class, function () {
             return new AuthService($this->app->make(AuthRepo::class));
@@ -55,5 +59,18 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RoomService::class, function () {
             return new RoomService($this->app->make('crud_repo'));
         });
+
+        $this->app->singleton(RoomTypeService::class, function () {
+            return new RoomTypeService($this->app->make('crud_repo'));
+        });
+
+        $this->app->singleton(RoomTypeService::class, function () {
+            return new RoomTypeService($this->app->make('crud_repo'));
+        });
+
+        $this->app->singleton(PricingService::class, function () {
+            return new PricingService($this->app->make('pricing_repo'));
+        });
+
     }
 }

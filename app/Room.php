@@ -2,15 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Storage;
 
 class Room extends Model
 {
 
     use AddedBy, SoftDeletes;
+
+    protected $fillable = ['name', 'room_type_id'];
 
     //
 
@@ -39,18 +39,10 @@ class Room extends Model
     }
 
     /**
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images()
     {
-        /**
-         * @var Collection $images
-         */
-        $images = $this->hasMany(RoomImage::class);
-        $images->flatMap(function (RoomImage $image) {
-            $image->image = Storage::url($image->image);
-            return $image;
-        });
-        return $images;
+        return $this->hasMany(RoomImage::class);
     }
 }

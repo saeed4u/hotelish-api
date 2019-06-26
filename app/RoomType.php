@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class RoomType extends Model
 {
     use AddedBy, SoftDeletes;
+
+    protected $fillable = ['name'];
     //
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
