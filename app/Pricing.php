@@ -10,6 +10,8 @@ class Pricing extends Model
 
     use AddedBy, SoftDeletes;
 
+    protected $fillable = ['price', 'room_type_id'];
+
     //
 
     /**

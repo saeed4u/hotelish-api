@@ -15,6 +15,7 @@ class PricingResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'room_type' => new RoomTypeResource($this->roomType),
             'price' => sprintf("%s %s", $this->currency, number_format($this->price, 2)),
             'added_by' => $this->added_by ? $this->addedBy->name : ''

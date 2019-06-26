@@ -50,6 +50,6 @@ class CrudRepoImpl implements Repo
      */
     function delete(Model $model): bool
     {
-        return $model->save();
+        return $model->delete();
     }
 }
