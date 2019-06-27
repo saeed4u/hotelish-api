@@ -21,8 +21,7 @@ class RoomResource extends JsonResource
             'updated_at' => $this->updated_at,
             'type' => $this->type->name,
             'added_by' => $this->added_by ? $this->addedBy->name : '',
-            'images' => ImageResource::collection($this->images),
-            'bookings' => BookingResource::collection($this->bookings)
+            'images' => ImageResource::collection($this->images)
         ];
     }
 }

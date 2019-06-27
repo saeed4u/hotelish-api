@@ -44,4 +44,13 @@ trait Logging
         $body = json_encode($request->json()->all());
         Log::channel('request_logs')->info("Request info: ID =  $id; Path = $path; Method = $method; Payload = $body");
     }
+
+
+    function logResponse(Request $request, $response)
+    {
+        $id = $request->req_id;
+        $status = $response->status();
+        $response = $response->getContent();
+        Log::channel('request_logs')->info("Response info: Request ID =  $id; Status=$status, Response: $response");
+    }
 }

@@ -1,0 +1,75 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="min-height: 100vh">
+  <mat-card style="width: 70%">
+    <mat-card-header>
+      <mat-card-title>Edit Hotel Info</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="row" fxLayoutAlign="center center" *ngIf="hotelInfo">
+      <form class="form" [formGroup]="hotelInfo">
+
+        <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="!hotelInfo.controls['name'].valid && hotelInfo.controls['name'].touched">
+              {{ getError('name') }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="!hotelInfo.controls['email'].valid && hotelInfo.controls['email'].touched">
+              {{ getError('email') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="Address" formControlName="address">
+            <mat-error *ngIf="!hotelInfo.controls['address'].valid && hotelInfo.controls['address'].touched">
+              {{ getError('address') }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="City" formControlName="city">
+            <mat-error *ngIf="!hotelInfo.controls['city'].valid && hotelInfo.controls['city'].touched">
+              {{ getError('city') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="State" formControlName="state">
+            <mat-error *ngIf="!hotelInfo.controls['state'].valid && hotelInfo.controls['state'].touched">
+              {{ getError('state') }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="Country" formControlName="country">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+          <mat-form-field fxFlex="0 1 calc(50% - 32px)">
+            <input matInput placeholder="Zip code" formControlName="zip_code">
+            <mat-error *ngIf="!hotelInfo.controls['zip_code'].valid && hotelInfo.controls['zip_code'].touched">
+              {{ getError('zip_code') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+      </form>
+    </mat-card-content>
+    <mat-progress-bar [style.display]="loading?'block' : 'none'" mode="indeterminate"
+                      style="width: 30%; margin: 0 auto"></mat-progress-bar>
+
+    <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+      <button [style.display]="!loading?'block' : 'none'" mat-raised-button (click)="updateHotel()" color="primary"
+              [disabled]="hotelInfo && !hotelInfo.valid || !changes">
+        Update
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

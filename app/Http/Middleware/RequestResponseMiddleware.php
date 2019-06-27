@@ -27,7 +27,7 @@ class RequestResponseMiddleware
 
     public function terminate($request, $response)
     {
-       // $this->logResponse($request, $response);
+        $this->logResponse($request, $response);
     }
 
 }

@@ -25,7 +25,7 @@ trait ApiResponse
 
     function badRequest($message = 'Bad Request')
     {
-        return response(array('status_code' => static::$BAD_REQUEST_CODE, 'message' => $message), 400);
+        return response()->json(array('status_code' => static::$BAD_REQUEST_CODE, 'message' => $message), 400);
     }
 
     function validationError($message = 'Unprocessable Entity', $data = null)

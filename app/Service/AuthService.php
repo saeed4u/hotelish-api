@@ -53,7 +53,7 @@ class AuthService
     public function login(array $loginData)
     {
         try {
-            $user = $this->baseRepo->login($loginData['email'], $loginData['password']);
+            $user = $this->baseRepo->login($loginData['email'], $loginData['password'], $loginData['ip']);
             if ($user) {
                 if ($user->status === static::$USER_ACCOUNT_BLOCKED_TOO_MANY_LOGIN_ATTEMPTS) {
                     return $this->forbidden('Sorry, your account has been temporarily blocked. Please contact our support to get it resolved');

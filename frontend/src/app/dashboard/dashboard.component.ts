@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DashboardRepo} from "../core/repo/dashboard.repo";
+import {HotelRepo} from "../core/repo/hotel.repo";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +8,7 @@ import {DashboardRepo} from "../core/repo/dashboard.repo";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private dashboardRepo: DashboardRepo) { }
+  constructor(private dashboardRepo: HotelRepo) { }
 
   ngOnInit() {
   }

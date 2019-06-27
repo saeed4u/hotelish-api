@@ -14,7 +14,7 @@ class Hotel extends Model
         'email',
         'address',
         'state',
-        'country_id',
+        'city',
         'zip_code',
         'phone_number'
     ];

@@ -6,7 +6,7 @@ import {AppComponent} from "./app.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoginComponent} from "./login/login.component";
 import {SharedModule} from "./core/shared.module";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToolbarComponent} from "./shared/toolbar/toolbar.component";
 import {ToastrModule} from "ng6-toastr-notifications";
 import {NgxWebstorageModule} from "ngx-webstorage";
@@ -16,13 +16,16 @@ import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./core/interceptors/timeoutin
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AuthGuard} from "./core/guards/auth.guard";
 import {RouteGuard} from "./core/guards/route.guard";
+import { HotelComponent } from './hotel/hotel.component';
+import {HttpErrorInterceptor} from "./core/interceptors/httperror.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ToolbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    HotelComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import {RouteGuard} from "./core/guards/route.guard";
     BrowserAnimationsModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     NgxWebstorageModule.forRoot(),
     HttpClientModule
@@ -38,6 +42,7 @@ import {RouteGuard} from "./core/guards/route.guard";
     AuthGuard, RouteGuard,
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: TimeoutInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     {provide: DEFAULT_TIMEOUT, useValue: (15 * 1000)}
   ],
   bootstrap: [AppComponent]

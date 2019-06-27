@@ -1,6 +1,7 @@
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
-import {ToastrManager} from "ng6-toastr-notifications";
+import {ToastrManager} from 'ng6-toastr-notifications';
+import {IErrorMessage} from '../model/IErrorMessage';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,16 @@ export class NotificationService {
     this.toaster.warningToastr(message);
   }
 
-  private success(message: string) {
+
+  success(message: string) {
     this.toaster.successToastr(message);
   }
 
-  private error(message: string) {
+  error(message: string) {
     this.toaster.errorToastr(message);
+  }
+
+  generalError(error: IErrorMessage) {
+    this.toaster.errorToastr(error.errorMessage, error.title);
   }
 }
