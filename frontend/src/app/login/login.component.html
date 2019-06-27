@@ -7,11 +7,11 @@
       <form class="login-form">
         <div fxLayout="column">
           <mat-form-field class="input-full-width">
-            <input matInput placeholder="Email" type="email" ([ngModel])="email">
+            <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="email">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Password" type="password" ([ngModel])="password"/>
+            <input matInput placeholder="Password" name="password" type="password" [(ngModel)]="password"/>
           </mat-form-field>
         </div>
         <mat-progress-bar [style.display]="loggingIn?'block' : 'none'" mode="indeterminate"></mat-progress-bar>
