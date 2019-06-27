@@ -60,7 +60,7 @@ class AuthRepoImpl implements AuthRepo
             if ($login_attempts === env('MAXIMUM_LOGIN_ATTEMPTS', 5)) {
                 $user->status = static::$USER_ACCOUNT_BLOCKED_TOO_MANY_LOGIN_ATTEMPTS;
             }
-            $this->save($user);
+            $user->save();
         }
         return null;
     }

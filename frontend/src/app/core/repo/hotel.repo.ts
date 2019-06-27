@@ -25,8 +25,9 @@ export class HotelRepo {
     });
   }
 
-  getHotel(freshData: boolean = false): Observable<Hotel> {
+  getHotel(): Observable<Hotel> {
     const cachedHotel = this.localStorage.retrieve('hotel');
+    const freshData = this.localStorage.retrieve('refresh_hotel');
     const newData = freshData || !cachedHotel;
     return Observable.create((observer) => {
       if (!newData) {

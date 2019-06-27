@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddHotelImageRequest;
 use App\Http\Requests\UpdateHotelRequest;
 use App\Service\HotelService;
 
@@ -29,5 +30,10 @@ class HotelController extends Controller
     {
         $validated = $request->validated();
         return $this->service->updateHotel($validated);
+    }
+
+    public function addHotelImage(AddHotelImageRequest $request){
+         $request->validated();
+        return $this->service->addHotelImage($request->file('image'));
     }
 }

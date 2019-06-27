@@ -5,6 +5,7 @@ import {
   MatCardModule,
   MatDialogModule,
   MatDividerModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -13,13 +14,16 @@ import {
   MatProgressBarModule,
   MatSidenavModule,
   MatTableModule,
-  MatToolbarModule, MatTooltipModule
+  MatToolbarModule,
+  MatTooltipModule
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuthStateService} from "../service/authstate.service";
 import {NotificationService} from "../service/notification.service";
 import {ErrorService} from "../service/error.service";
 import {HotelRepo} from "./repo/hotel.repo";
+import { FileUploadModule } from "ng2-file-upload/ng2-file-upload";
+import {ImageUploadComponent} from "../imageupload/imageupload.component";
 
 @NgModule({
   imports: [
@@ -37,6 +41,9 @@ import {HotelRepo} from "./repo/hotel.repo";
     MatListModule,
     MatSidenavModule,
     MatTooltipModule,
+    MatExpansionModule,
+
+    FileUploadModule,
     FlexLayoutModule
   ],
   exports: [
@@ -55,6 +62,8 @@ import {HotelRepo} from "./repo/hotel.repo";
     MatListModule,
     MatSidenavModule,
     MatTooltipModule,
+    FileUploadModule,
+    MatExpansionModule,
     FlexLayoutModule
   ],
   providers: [

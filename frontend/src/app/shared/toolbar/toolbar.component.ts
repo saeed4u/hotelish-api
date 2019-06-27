@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthStateService} from "src/app/service/authstate.service";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-toolbar',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 export class ToolbarComponent implements OnInit {
   loggedIn: boolean;
 
-  constructor(private router: Router, private authState: AuthStateService) {
+  constructor(private router: Router, private authState: AuthStateService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -18,6 +19,8 @@ export class ToolbarComponent implements OnInit {
       next: (value: boolean) => {
         this.loggedIn = value;
         if(!this.loggedIn){
+
+          this.dialog.closeAll()
           this.router.navigate(['/login']);
         }
       },

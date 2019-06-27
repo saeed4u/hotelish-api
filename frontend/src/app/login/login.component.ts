@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
       },
       error: () => {
         this.loggingIn = false;
-        this.notificationService.loginError();
       }
     });
   }
