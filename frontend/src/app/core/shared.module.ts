@@ -15,6 +15,12 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AuthstateService} from '../service/authstate.service';
 import {NotificationService} from '../service/notification.service';
+import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./interceptors/timeoutinterceptor.interceptor";
+import {HttpErrorInterceptor} from "./interceptors/httperror.interceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HttpConfigInterceptor} from "./interceptors/httpconfig.interceptor";
+import {ErrorService} from "../service/error.service";
+import {DashboardRepo} from "./repo/dashboard.repo";
 
 @NgModule({
   imports: [
@@ -47,6 +53,8 @@ import {NotificationService} from '../service/notification.service';
   providers: [
     AuthstateService,
     NotificationService,
+    ErrorService,
+    DashboardRepo
   ]
 })
 export class SharedModule {

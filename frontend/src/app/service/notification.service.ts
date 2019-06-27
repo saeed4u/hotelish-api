@@ -11,11 +11,15 @@ export class NotificationService {
   }
 
   loginError() {
-    this.error('Opps! We did not recognised the given credentials, please try again')
+    this.error('Opps! We did not recognised the given credentials, please try again.');
   }
 
-  loginSuccess(){
+  loginSuccess() {
     this.success('Great to have you here!');
+  }
+
+  info(message: string) {
+    this.toaster.warningToastr(message);
   }
 
   private success(message: string) {
@@ -23,6 +27,6 @@ export class NotificationService {
   }
 
   private error(message: string) {
-    this.toaster.errorToastr(message, 'Error');
+    this.toaster.errorToastr(message);
   }
 }
