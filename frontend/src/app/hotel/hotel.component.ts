@@ -3,8 +3,9 @@ import {HotelRepo} from "../core/repo/hotel.repo";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Hotel} from "../model/Responses";
 import {isEqual} from "lodash";
-import {produce} from "immer";
 import {NotificationService} from "../service/notification.service";
+import {MatDialog} from "@angular/material";
+import {ImageUploadComponent} from "../imageupload/imageupload.component";
 
 @Component({
   selector: 'app-hotel',
@@ -25,7 +26,8 @@ export class HotelComponent implements OnInit {
     state: 'Hotel\'s state is required'
   };
 
-  constructor(private repo: HotelRepo, private formBuilder: FormBuilder, private notificationService: NotificationService) {
+  constructor(private repo: HotelRepo, private formBuilder: FormBuilder, private notificationService: NotificationService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -49,6 +51,10 @@ export class HotelComponent implements OnInit {
           this.loading = false;
         },
       });
+  }
+
+  openUploadDialog() {
+    this.dialog.open(ImageUploadComponent, {width: '70%', height: '50%'});
   }
 
   updateHotel() {

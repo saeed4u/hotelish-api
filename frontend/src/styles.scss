@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~@angular/material/prebuilt-themes/purple-green.css";
 
 .form {
@@ -8,6 +7,17 @@
   width: 100%;
 }
 
-.input-full-width{
+.input-full-width {
   width: 100%;
 }
+
+.upload_box {
+  background-color: #ffffff;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  font-size: 17px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+}
+

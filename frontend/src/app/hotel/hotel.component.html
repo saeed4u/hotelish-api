@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-title>Edit Hotel Info</mat-card-title>
     </mat-card-header>
-    <mat-card-content fxLayout="row" fxLayoutAlign="center center" *ngIf="hotelInfo">
+    <mat-card-content fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="hotelInfo">
       <form class="form" [formGroup]="hotelInfo">
 
         <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
@@ -61,6 +61,22 @@
         </div>
 
       </form>
+      <div class="form">
+
+        <mat-accordion class="input-full-width">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Images
+            </mat-expansion-panel-header>
+            <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+              <img mat-card-image  fxFlex="0 1 calc(25% - 32px)" *ngFor="let image of hotelImmutable.images" src="{{image.src}}" style="width: 200px; height: 80px;">
+              <div  fxFlex="0 1 calc(25% - 32px)">
+                <button mat-raised-button (click)="openUploadDialog()">Add Image</button>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
     </mat-card-content>
     <mat-progress-bar [style.display]="loading?'block' : 'none'" mode="indeterminate"
                       style="width: 30%; margin: 0 auto"></mat-progress-bar>
@@ -72,4 +88,5 @@
       </button>
     </mat-card-actions>
   </mat-card>
+
 </div>

@@ -13,7 +13,8 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const jwt = this.storage.retrieve('jwt');
-    if (!req.headers.has('Content-Type')) {
+    const url = req.url;
+    if (!url.includes('image') && !req.headers.has('content-Type')) {
       req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     }
     if (jwt) {

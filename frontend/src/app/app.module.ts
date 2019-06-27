@@ -16,8 +16,9 @@ import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./core/interceptors/timeoutin
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AuthGuard} from "./core/guards/auth.guard";
 import {RouteGuard} from "./core/guards/route.guard";
-import { HotelComponent } from './hotel/hotel.component';
+import {HotelComponent} from "./hotel/hotel.component";
 import {HttpErrorInterceptor} from "./core/interceptors/httperror.interceptor";
+import {ImageUploadComponent} from "./imageupload/imageupload.component";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,10 @@ import {HttpErrorInterceptor} from "./core/interceptors/httperror.interceptor";
     ToolbarComponent,
     DashboardComponent,
     HotelComponent,
+    ImageUploadComponent
+  ],
+  entryComponents: [
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,

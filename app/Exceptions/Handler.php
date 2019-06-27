@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use App\Utils\ApiResponse;
+use App\Utils\Logging;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
-    use ApiResponse;
+    use ApiResponse,Logging;
     /**
      * A list of the exception types that are not reported.
      *
@@ -51,6 +52,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        $this->logException($exception);
         if (stripos(request()->fullUrl(), 'api')) {
             if ($exception instanceof MethodNotAllowedHttpException) {
                 return $this->methodNotAllowed();
@@ -60,6 +62,5 @@ class Handler extends ExceptionHandler
                 return $this->unauthorised('Invalid access token provided');
             }
         }
-        return parent::render($request, $exception);
     }
 }

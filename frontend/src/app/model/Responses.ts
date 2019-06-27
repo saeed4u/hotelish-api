@@ -59,11 +59,12 @@ export interface Hotel {
   email: string;
   address: string;
   state: string;
-  city: city;
+  city: string;
   country: Country;
   zip_code: string;
   phone: string;
   rooms: Array<Room>;
+  images: Array<Image>;
 }
 
 export class LoginResponse extends BaseResponse {

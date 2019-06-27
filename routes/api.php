@@ -22,8 +22,11 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
     Route::group(['middleware' => 'api.auth'], function () {
         Route::group(['prefix' => 'admin', 'middleware' => 'user.is.admin'], function () {
             //hotel
-            Route::get('hotel', 'HotelController@getHotel');
-            Route::patch('hotel', 'HotelController@updateHotel');
+            Route::group(['prefix' => 'hotel'], function () {
+                Route::get('', 'HotelController@getHotel');
+                Route::post('image', 'HotelController@addHotelImage');
+                Route::patch('', 'HotelController@updateHotel');
+            });
 
             //rooms
             Route::group(['prefix' => 'room'], function () {
