@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from "@angular/core";
+import {BehaviorSubject} from "rxjs";
+import {LocalStorageService} from "ngx-webstorage";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthstateService {
- authState: BehaviorSubject<boolean>;
+export class AuthStateService {
+  authState: BehaviorSubject<boolean>;
 
- constructor() {
-  this.authState = new BehaviorSubject(false);
- }
+  constructor(private localStorage: LocalStorageService) {
+    this.authState = new BehaviorSubject(localStorage.retrieve('jwt') || false);
+  }
 
   public setLoggedInState(loggedIn: boolean) {
     this.authState.next(loggedIn);
+    if (!loggedIn) {
+      this.localStorage.clear();
+    }
   }
 
 }

@@ -1,26 +1,25 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
 import {
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
+  MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatListModule,
   MatMenuModule,
+  MatProgressBarModule,
+  MatSidenavModule,
   MatTableModule,
-  MatToolbarModule,
-  MatProgressBarModule
-} from '@angular/material';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {AuthstateService} from '../service/authstate.service';
-import {NotificationService} from '../service/notification.service';
-import {DEFAULT_TIMEOUT, TimeoutInterceptor} from "./interceptors/timeoutinterceptor.interceptor";
-import {HttpErrorInterceptor} from "./interceptors/httperror.interceptor";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {HttpConfigInterceptor} from "./interceptors/httpconfig.interceptor";
+  MatToolbarModule, MatTooltipModule
+} from "@angular/material";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {AuthStateService} from "../service/authstate.service";
+import {NotificationService} from "../service/notification.service";
 import {ErrorService} from "../service/error.service";
-import {DashboardRepo} from "./repo/dashboard.repo";
+import {HotelRepo} from "./repo/hotel.repo";
 
 @NgModule({
   imports: [
@@ -34,6 +33,10 @@ import {DashboardRepo} from "./repo/dashboard.repo";
     MatMenuModule,
     MatIconModule,
     MatProgressBarModule,
+    MatDividerModule,
+    MatListModule,
+    MatSidenavModule,
+    MatTooltipModule,
     FlexLayoutModule
   ],
   exports: [
@@ -48,13 +51,17 @@ import {DashboardRepo} from "./repo/dashboard.repo";
     MatIconModule,
     MatProgressBarModule,
     MatFormFieldModule,
+    MatDividerModule,
+    MatListModule,
+    MatSidenavModule,
+    MatTooltipModule,
     FlexLayoutModule
   ],
   providers: [
-    AuthstateService,
+    AuthStateService,
     NotificationService,
     ErrorService,
-    DashboardRepo
+    HotelRepo,
   ]
 })
 export class SharedModule {

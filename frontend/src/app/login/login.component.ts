@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {AuthstateService} from "../service/authstate.service";
+import {AuthStateService} from "../service/authstate.service";
 import {NotificationService} from "../service/notification.service";
 import {ApiService} from "../service/api.service";
 import {LoginResponse} from "../model/Responses";
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   password: string;
   loggingIn: boolean;
 
-  constructor(private authState: AuthstateService,
+  constructor(private authState: AuthStateService,
               private notificationService: NotificationService,
               private apiService: ApiService,
               private localStorage: LocalStorageService, private router: Router) {
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     return EMAIL_REGEXP.test(this.email);
   }
 
-  login() {
+  public login() {
     if (!this.isEmailValid()) {
       this.notificationService.info('Please enter a valid email address');
       return;

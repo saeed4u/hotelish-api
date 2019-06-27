@@ -19,11 +19,13 @@ class HotelResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'address' => $this->address,
+            'city' => $this->city,
             'state' => $this->state,
             'country' => new CountryResource($this->country),
             'zip_code' => $this->zip_code,
             'phone' => $this->phone_number,
-            'rooms' => RoomResource::collection($this->rooms)
+            'rooms' => RoomResource::collection($this->rooms),
+            'images' => ImageResource::collection($this->images)
         ];
     }
 }

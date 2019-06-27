@@ -26,7 +26,7 @@ class AuthController extends Controller
     public function login(LoginRequest $loginRequest)
     {
         $payload = $loginRequest->validated();
-        return $this->authService->login($payload);
+        return $this->authService->login(array_merge($payload, ['ip' => $loginRequest->ip()]));
     }
 
     public function register(RegistrationRequest $registrationRequest)

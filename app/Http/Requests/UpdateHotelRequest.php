@@ -28,7 +28,6 @@ class UpdateHotelRequest extends BaseRequest
             'address' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'country_id' => 'required|exists:countries,id',
             'zip_code' => 'required'
         ];
     }
@@ -38,7 +37,7 @@ class UpdateHotelRequest extends BaseRequest
         return [
             'email' => 'trim|lowercase',
             'name' => 'trim|escape',
-            'city' => 'trim|lowercase|escape',
+            'city' => 'trim|capitalize|escape',
         ];
     }
 }

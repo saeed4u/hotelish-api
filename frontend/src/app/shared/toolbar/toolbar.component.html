@@ -1,24 +1,32 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <span>Hotel Admin</span>
-        <div *ngIf="loggedIn" style="float: right">
-            <button mat-icon-button [matMenuTriggerFor]="loggedInMenu">
-                <mat-icon>more_vert</mat-icon>
+
+  <mat-toolbar-row>
+
+    <span class="toolbar-title"> Hotel Admin </span>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="loggedIn">
+
+      <ul fxLayout fxLayoutGap="20px">
+        <li>
+          <button mat-icon-button
+                  matTooltip="Hotel info" (click)="hotelComponent">
+            <mat-icon >hotel</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #auth="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sign out</span>
             </button>
-            <mat-menu #loggedInMenu="matMenu">
-                <button mat-menu-item>
-                    <mat-icon>account</mat-icon>
-                    <span>Account</span>
-                </button>
-                <button mat-menu-item disabled>
-                    <mat-icon>voicemail</mat-icon>
-                    <span>Check voicemail</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>notifications_off</mat-icon>
-                    <span>Disable alerts</span>
-                </button>
-            </mat-menu>
-        </div>
-    </mat-toolbar-row>
+          </mat-menu>
+        </li>
+      </ul>
+
+    </div>
+
+  </mat-toolbar-row>
+
 </mat-toolbar>

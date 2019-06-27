@@ -12,12 +12,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const jwt = this.storage.retrieve('jwt_token');
+    const jwt = this.storage.retrieve('jwt');
     if (!req.headers.has('Content-Type')) {
       req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     }
     if (jwt) {
-      req = req.clone({headers: req.headers.set('Authorization', jwt)});
+      req = req.clone({headers: req.headers.set('Authorization', `Bearer ${jwt}`)});
     }
     req = req.clone({headers: req.headers.set('Accept', 'application/json')});
     return next.handle(req);
