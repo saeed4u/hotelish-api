@@ -23,7 +23,7 @@ class PricingMiddleware
         if (!$pricing) {
             return $this->notFound("Pricing with $request->id not found");
         }
-        $request->pricing = $pricing;
+        $_REQUEST['pricing'] = $pricing;
         return $next($request);
     }
 }

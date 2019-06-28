@@ -8,18 +8,33 @@
       <ul fxLayout fxLayoutGap="20px">
         <li>
           <button mat-icon-button
-                  matTooltip="Hotel info" (click)="hotelComponent">
-            <mat-icon >hotel</mat-icon>
+                  matTooltip="Hotel info" (click)="navigateTo('/hotel')">
+            <mat-icon>hotel</mat-icon>
+          </button>
+        </li>
+
+        <li>
+          <button mat-icon-button
+                  matTooltip="Hotel rooms" (click)="navigateTo('/rooms')">
+            <mat-icon>meeting_room</mat-icon>
           </button>
         </li>
         <li>
-          <button mat-icon-button [matMenuTriggerFor]="auth">
-            <mat-icon>person_outline</mat-icon>
+          <button mat-icon-button matTooltip="Settings" [matMenuTriggerFor]="auth">
+            <mat-icon>settings</mat-icon>
           </button>
           <mat-menu #auth="matMenu">
             <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               <span>Sign out</span>
+            </button>
+
+            <button mat-menu-item (click)="navigateTo('/room-type')">
+              <span>Room Types</span>
+            </button>
+
+            <button mat-menu-item (click)="navigateTo('/pricing')">
+              <span>Pricing</span>
             </button>
           </mat-menu>
         </li>

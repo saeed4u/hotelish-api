@@ -13,21 +13,9 @@ export class HotelRepo {
 
   }
 
-  getUser() {
-    return Observable.create((observer) => {
-      const user = this.localStorage.retrieve('user');
-      if (user) {
-        observer.next(JSON.parse(user));
-        observer.complete();
-      } else {
-        //todo get user from api
-      }
-    });
-  }
-
   getHotel(): Observable<Hotel> {
     const cachedHotel = this.localStorage.retrieve('hotel');
-    const freshData = this.localStorage.retrieve('refresh_hotel');
+    const freshData = this.localStorage.retrieve('refresh_data.hotel');
     const newData = freshData || !cachedHotel;
     return Observable.create((observer) => {
       if (!newData) {
@@ -38,6 +26,7 @@ export class HotelRepo {
       this.apiService.getHotel()
         .subscribe({
           next: (value: HotelResponse) => {
+            this.localStorage.store('refresh_data.hotel', false);
             const hotel = value.hotel;
             observer.next(hotel);
             observer.complete();

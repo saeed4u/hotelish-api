@@ -59,7 +59,7 @@ class RoomTypeService extends CrudService
     public function getAll()
     {
         $roomTypes = RoomType::paginate(15);
-        return $this->success('Rooms retrieved', ['room_types' => RoomTypeResource::collection($roomTypes)]);
+        return $this->success('Room types retrieved', ['room_types' => RoomTypeResource::collection($roomTypes)]);
     }
 
     /**
@@ -67,11 +67,12 @@ class RoomTypeService extends CrudService
      * @param array $payload
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateRoomType(RoomType $roomType, array $payload)
+    public function updateRoomType($roomType, array $payload)
     {
+
         try {
             if ($this->repo->update($roomType, $payload)) {
-                return $this->success('Room updated successfully', ['room' => new RoomTypeResource($roomType->refresh())]);
+                return $this->success('RoomType updated successfully', ['room_type' => new RoomTypeResource($roomType->refresh())]);
             }
         } catch (\Exception $exception) {
             $this->logException($exception);
@@ -83,8 +84,9 @@ class RoomTypeService extends CrudService
      * @param RoomType $roomType
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteRoomType(RoomType $roomType)
+    public function deleteRoomType($roomType)
     {
+        $this->logAuth($roomType->toJson());
         try {
             if ($this->repo->delete($roomType)) {
                 return $this->success();

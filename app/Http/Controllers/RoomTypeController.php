@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoomTypeRequest;
 use App\Service\RoomTypeService;
+use App\Utils\Logging;
 use Illuminate\Http\Request;
 
 class RoomTypeController extends Controller
 {
+    use Logging;
     /**
      * @var RoomTypeService $service
      */
@@ -25,7 +27,7 @@ class RoomTypeController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getRoomsTypes()
+    public function getRoomTypes()
     {
         return $this->service->getAll();
     }
@@ -39,7 +41,7 @@ class RoomTypeController extends Controller
      * @param RoomTypeRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function addRoom(RoomTypeRequest $request)
+    public function addRoomType(RoomTypeRequest $request)
     {
         $validated = $request->validated();
         return $this->service->addRoomType($validated);
@@ -49,18 +51,18 @@ class RoomTypeController extends Controller
      * @param RoomTypeRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function updateRoom(RoomTypeRequest $request)
+    public function updateRoomType(RoomTypeRequest $request)
     {
         $validated = $request->validated();
-        return $this->service->updateRoomType($request->room_type, $validated);
+        return $this->service->updateRoomType($_REQUEST['room-type'], $validated);
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteRoomType(Request $request)
+    public function deleteRoomType()
     {
-        return $this->service->deleteRoomType($request->room_type);
+        $this->logAuth("Here ddd");
+        return $this->service->deleteRoomType($_REQUEST['room-type']);
     }
 }

@@ -13,6 +13,6 @@ trait AddedBy
 {
     public function addedBy()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'added_by');
     }
 }

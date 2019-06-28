@@ -21,3 +21,12 @@
   border-radius: 6px;
 }
 
+.mat-button.mat-small {
+  min-width: 1%;
+}
+.bottom-right-button{
+  right: 20px;
+  bottom: 10px;
+  left: auto;
+  position: absolute !important;
+}

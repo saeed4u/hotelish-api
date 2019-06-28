@@ -18,7 +18,10 @@ import {AuthGuard} from "./core/guards/auth.guard";
 import {RouteGuard} from "./core/guards/route.guard";
 import {HotelComponent} from "./hotel/hotel.component";
 import {HttpErrorInterceptor} from "./core/interceptors/httperror.interceptor";
-import {ImageUploadComponent} from "./imageupload/imageupload.component";
+import {ImageUploadComponent} from "./dialog/imageupload/imageupload.component";
+import { RoomTypeComponent } from './roomtype/roomtype.component';
+import { RoomTypeDialogComponent } from './dialog/roomtypedialog/roomtypedialog.component';
+import { DeleteConfirmationDialogComponent } from './dialog/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +30,15 @@ import {ImageUploadComponent} from "./imageupload/imageupload.component";
     ToolbarComponent,
     DashboardComponent,
     HotelComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    RoomTypeComponent,
+    RoomTypeDialogComponent,
+    DeleteConfirmationDialogComponent
   ],
   entryComponents: [
-    ImageUploadComponent
+    ImageUploadComponent,
+    RoomTypeDialogComponent,
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

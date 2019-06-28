@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PricingRequest;
 use App\Service\PricingService;
-use Illuminate\Http\Request;
 
 class PricingController extends Controller
 {
@@ -60,16 +59,15 @@ class PricingController extends Controller
     public function updatePricing(PricingRequest $request)
     {
         $validated = $request->validated();
-        return $this->service->updatePricing($request->pricing, $validated);
+        return $this->service->updatePricing($_REQUEST['pricing'], $validated);
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deletePricing(Request $request)
+    public function deletePricing()
     {
-        return $this->service->deletePricing($request->pricing);
+        return $this->service->deletePricing($_REQUEST['pricing']);
     }
 
 }

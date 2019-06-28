@@ -4,6 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\PricingMiddleware;
 use App\Http\Middleware\RequestResponseMiddleware;
+use App\Http\Middleware\RoomMiddleware;
+use App\Http\Middleware\RoomTypeMiddleware;
 use App\Http\Middleware\UserIsAdminMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,5 +70,8 @@ class Kernel extends HttpKernel
         'req.log' => RequestResponseMiddleware::class,
         'user.is.admin' => UserIsAdminMiddleware::class,
         'pricing' => PricingMiddleware::class,
+        'room-type'=> RoomTypeMiddleware::class,
+        'room'=> RoomMiddleware::class,
+
     ];
 }
