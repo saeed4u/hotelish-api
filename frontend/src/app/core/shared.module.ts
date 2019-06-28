@@ -15,15 +15,16 @@ import {
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule,
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuthStateService} from "../service/authstate.service";
 import {NotificationService} from "../service/notification.service";
 import {ErrorService} from "../service/error.service";
 import {HotelRepo} from "./repo/hotel.repo";
-import { FileUploadModule } from "ng2-file-upload/ng2-file-upload";
-import {ImageUploadComponent} from "../imageupload/imageupload.component";
+import {FileUploadModule} from "ng2-file-upload/ng2-file-upload";
+import {RoomTypeRepo} from "./repo/roomtype.repo";
 
 @NgModule({
   imports: [
@@ -42,9 +43,9 @@ import {ImageUploadComponent} from "../imageupload/imageupload.component";
     MatSidenavModule,
     MatTooltipModule,
     MatExpansionModule,
-
     FileUploadModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule,
   ],
   exports: [
     CommonModule,
@@ -64,13 +65,15 @@ import {ImageUploadComponent} from "../imageupload/imageupload.component";
     MatTooltipModule,
     FileUploadModule,
     MatExpansionModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatGridListModule,
   ],
   providers: [
     AuthStateService,
     NotificationService,
     ErrorService,
     HotelRepo,
+    RoomTypeRepo,
   ]
 })
 export class SharedModule {

@@ -31,8 +31,8 @@ export class ToolbarComponent implements OnInit {
     });
   }
 
-  hotelComponent() {
-    this.router.navigate(['/hotel']);
+  navigateTo(url: string) {
+    this.router.navigate([url]);
   }
 
   logout() {

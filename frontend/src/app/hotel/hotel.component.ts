@@ -5,7 +5,7 @@ import {Hotel} from "../model/Responses";
 import {isEqual} from "lodash";
 import {NotificationService} from "../service/notification.service";
 import {MatDialog} from "@angular/material";
-import {ImageUploadComponent} from "../imageupload/imageupload.component";
+import {ImageUploadComponent} from "../dialog/imageupload/imageupload.component";
 
 @Component({
   selector: 'app-hotel',

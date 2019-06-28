@@ -52,16 +52,15 @@ class RoomController extends Controller
     public function updateRoom(RoomRequest $request)
     {
         $validated = $request->validated();
-        return $this->service->updateRoom($request->room, $validated);
+        return $this->service->updateRoom($_REQUEST['room'], $validated);
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteRoom(Request $request)
+    public function deleteRoom()
     {
-        return $this->service->deleteRoom($request->room);
+        return $this->service->deleteRoom($_REQUEST['room']);
     }
 
 }

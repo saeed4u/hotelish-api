@@ -4,11 +4,12 @@ namespace App\Http\Middleware;
 
 use App\RoomType;
 use App\Utils\ApiResponse;
+use App\Utils\Logging;
 use Closure;
 
 class RoomTypeMiddleware
 {
-    use ApiResponse;
+    use ApiResponse, Logging;
 
     /**
      * Handle an incoming request.
@@ -20,10 +21,11 @@ class RoomTypeMiddleware
     public function handle($request, Closure $next)
     {
         $roomType = RoomType::find($request->id);
+
         if (!$roomType) {
             return $this->notFound("RoomType with $request->id not found");
         }
-        $request->room_type = $roomType;
+        $_REQUEST['room-type'] = $roomType;
         return $next($request);
     }
 }

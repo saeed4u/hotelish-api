@@ -1,4 +1,4 @@
-abstract class BaseResponse {
+export class BaseResponse {
   status_code: string;
   message: string;
 }
@@ -22,13 +22,13 @@ export interface Image {
   src: string;
 }
 
-export interface RoomType{
+export interface RoomType {
   id: number;
   name: string;
   added_by: string;
 }
 
-export interface Pricing{
+export interface Pricing {
   id: number;
   room_type: RoomType;
   price: string;
@@ -71,6 +71,15 @@ export class LoginResponse extends BaseResponse {
   public user: User;
 }
 
-export class HotelResponse extends BaseResponse{
+export class HotelResponse extends BaseResponse {
   public hotel: Hotel;
 }
+
+export class RoomTypesResponse extends BaseResponse {
+  public room_types: Array<RoomType>;
+}
+
+export class RoomTypeResponse extends BaseResponse {
+  public room_type: RoomType;
+}
+

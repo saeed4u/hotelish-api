@@ -23,7 +23,7 @@ class RoomMiddleware
         if (!$room) {
             return $this->notFound("Room with $request->id not found");
         }
-        $request->room = $room;
+        $_REQUEST['room'] = $room;
         return $next($request);
     }
 }

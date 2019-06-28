@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {MatDialogRef} from "@angular/material";
-import {ImageUploadService} from "../service/imageupload.service";
+import {ImageUploadService} from "../../service/imageupload.service";
 import {forkJoin} from "rxjs/index";
-import {FileUploadResult} from "../model/ImageUploadResult";
+import {FileUploadResult} from "../../model/ImageUploadResult";
 
 @Component({
   selector: 'app-imageupload',
