@@ -48,7 +48,7 @@ export interface Room {
   name: string;
   created_at: string;
   updated_at: string;
-  type: string;
+  type: RoomType;
   added_by: string;
   images: Array<Image>;
 }
@@ -81,5 +81,13 @@ export class RoomTypesResponse extends BaseResponse {
 
 export class RoomTypeResponse extends BaseResponse {
   public room_type: RoomType;
+}
+
+export class RoomsResponse extends BaseResponse {
+  public rooms: Array<Room>;
+}
+
+export class RoomResponse extends BaseResponse {
+  public room: Room;
 }
 

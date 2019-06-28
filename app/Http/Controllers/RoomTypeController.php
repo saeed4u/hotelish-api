@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class RoomTypeController extends Controller
 {
-    use Logging;
     /**
      * @var RoomTypeService $service
      */
@@ -62,7 +61,6 @@ class RoomTypeController extends Controller
      */
     public function deleteRoomType()
     {
-        $this->logAuth("Here ddd");
         return $this->service->deleteRoomType($_REQUEST['room-type']);
     }
 }

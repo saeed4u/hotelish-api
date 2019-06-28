@@ -19,7 +19,7 @@ class RoomResource extends JsonResource
             'name' => $this->name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'type' => $this->type->name,
+            'type' => new RoomTypeResource($this->type),
             'added_by' => $this->added_by ? $this->addedBy->name : '',
             'images' => ImageResource::collection($this->images)
         ];

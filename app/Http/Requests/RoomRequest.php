@@ -2,8 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Utils\Logging;
+
 class RoomRequest extends BaseRequest
 {
+    use Logging;
+
     /**
      * Determine if the user is authorized to make this request.
      *

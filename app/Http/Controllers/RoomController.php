@@ -20,6 +20,7 @@ class RoomController extends Controller
     public function __construct(RoomService $service)
     {
         $this->service = $service;
+        $this->logAuth("contructor");
     }
 
     /**
@@ -41,6 +42,7 @@ class RoomController extends Controller
      */
     public function addRoom(RoomRequest $request)
     {
+        $this->logAuth("Here");
         $validated = $request->validated();
         return $this->service->addRoom($validated);
     }

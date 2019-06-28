@@ -2,13 +2,13 @@ import {Component, OnInit} from "@angular/core";
 import {RoomTypeRepo} from "../core/repo/roomtype.repo";
 import {RoomType} from "../model/Responses";
 import {MatDialog, MatTableDataSource} from "@angular/material";
-import {RoomTypeDialogComponent} from "../dialog/roomtypedialog/roomtypedialog.component";
+import {GenericDialogComponent} from "../dialog/genericdialog/genericdialog.component";
 import {DeleteConfirmationDialogComponent} from "../dialog/delete-confirmation-dialog/delete-confirmation-dialog.component";
 
 @Component({
   selector: 'app-roomtype',
-  templateUrl: './roomtype.component.html',
-  styleUrls: ['./roomtype.component.scss']
+  templateUrl: './roomtypes.component.html',
+  styleUrls: ['./roomtypes.component.scss']
 })
 export class RoomTypeComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class RoomTypeComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
 
-    this.roomTypeRepo.getRooms()
+    this.roomTypeRepo.getRoomTypes()
       .subscribe({
         next: (roomTypes: Array<RoomType>) => {
           this.roomTypes.data = roomTypes;
@@ -42,9 +42,12 @@ export class RoomTypeComponent implements OnInit {
     const roomType = {
       name: ''
     };
-    this.openDialog({title: 'Add a room type', roomType: roomType}, (data: RoomType) => {
+    this.openDialog({
+      title: 'Add a room type', roomType: roomType,
+      type: 'room-type'
+    }, (data: RoomType) => {
       this.loading = true;
-      this.roomTypeRepo.addRoom(data)
+      this.roomTypeRepo.addRoomType(data)
         .subscribe({
           next: (roomTypes: RoomType[]) => {
             this.loading = false;
@@ -60,7 +63,10 @@ export class RoomTypeComponent implements OnInit {
   }
 
   edit(roomType: RoomType) {
-    this.openDialog({title: `Edit ${roomType.name}`, roomType: roomType}, (data: RoomType) => {
+    this.openDialog({
+      title: `Edit \'${roomType.name}\'`, roomType: roomType,
+      type: 'room-type'
+    }, (data: RoomType) => {
       this.loading = true;
       this.roomTypeRepo.updateRoomType(data)
         .subscribe({
@@ -108,7 +114,7 @@ export class RoomTypeComponent implements OnInit {
   }
 
   private openDialog(data: object, callback): void {
-    const dialogRef = this.dialog.open(RoomTypeDialogComponent, {
+    const dialogRef = this.dialog.open(GenericDialogComponent, {
       width: '350px',
       data: data
     });
