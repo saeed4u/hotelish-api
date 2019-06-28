@@ -11,7 +11,7 @@ export class RoomTypeRepo {
 
   }
 
-  getRooms(): Observable<RoomType[]> {
+  getRoomTypes(): Observable<RoomType[]> {
     return Observable.create((observer) => {
       const cachedRoomTypes = this.localStorage.retrieve('room_types');
       const freshData = this.localStorage.retrieve('fresh_data.room_types') || !cachedRoomTypes;
@@ -38,7 +38,7 @@ export class RoomTypeRepo {
     });
   }
 
-  addRoom(roomType: RoomType): Observable<RoomType[]> {
+  addRoomType(roomType: RoomType): Observable<RoomType[]> {
     return Observable.create((observer) => {
       this.apiService.addRoomType(roomType)
         .subscribe({
@@ -60,7 +60,7 @@ export class RoomTypeRepo {
 
   updateRoomType(roomType: RoomType): Observable<RoomType[]> {
     return Observable.create((observer) => {
-      this.apiService.updateRoom(roomType)
+      this.apiService.updateRoomType(roomType)
         .subscribe({
           next: (response: RoomTypeResponse) => {
             const roomTypes = this.localStorage.retrieve('room_types');
@@ -79,9 +79,9 @@ export class RoomTypeRepo {
     });
   }
 
-  deleteRoomType(roomType: RoomType): Observable<RoomType> {
+  deleteRoomType(roomType: RoomType): Observable<RoomType[]> {
     return Observable.create((observer) => {
-      this.apiService.deleteRoom(roomType.id)
+      this.apiService.deleteRoomType(roomType.id)
         .subscribe({
           next: () => {
             const roomTypes = this.localStorage.retrieve('room_types');

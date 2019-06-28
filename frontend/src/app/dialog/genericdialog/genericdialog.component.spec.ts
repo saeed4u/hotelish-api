@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoomTypeComponent } from './roomtype.component';
+import { GenericDialogComponent } from './genericdialog.component';
 
-describe('RoomTypeComponent', () => {
-  let component: RoomTypeComponent;
-  let fixture: ComponentFixture<RoomTypeComponent>;
+describe('GenericDialogComponent', () => {
+  let component: GenericDialogComponent;
+  let fixture: ComponentFixture<GenericDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoomTypeComponent ]
+      declarations: [ GenericDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoomTypeComponent);
+    fixture = TestBed.createComponent(GenericDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,61 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="padding-top: 5%">
+  <mat-card style="width: 60%">
+
+
+    <mat-card-header>
+      <mat-card-title>Rooms</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top: 10px" [style.display]="!loading?'block' : 'none'"
+                      fxLayout="row" fxLayoutAlign="center">
+
+      <table mat-table [dataSource]="rooms" style="width: 100%;" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="room type">
+          <th mat-header-cell *matHeaderCellDef>Room type</th>
+          <td mat-cell *matCellDef="let element"> {{element.type.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-mini-fab color="primary" matTooltip="Edit {{element.name}}" (click)="editRoom(element)" style="margin-right: 10px"><i
+              class="material-icons">edit</i></button>
+
+            <button mat-mini-fab color="warn" matTooltip="Delete {{element.name}}" (click)="deleteRoom(element)"><i
+              class="material-icons">delete</i></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div fxLayout="row wrap">
+        <button mat-fab color="accent" class="bottom-right-button" matTooltip="Add room type"
+                (click)="addNewRoom()"><i
+          class="material-icons">add</i></button>
+      </div>
+
+    </mat-card-content>
+
+    <mat-progress-bar [style.display]="loading?'block' : 'none'" mode="indeterminate"
+                      style="width: 30%; margin: 0 auto"></mat-progress-bar>
+
+
+  </mat-card>
+
+</div>
+
+
+

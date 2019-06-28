@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div [ngSwitch]="data.type">
+  <div mat-dialog-content>
+    <mat-form-field style="width: 100%;" *ngSwitchCase="'room-type'">
+      <input matInput placeholder="" [(ngModel)]="data.roomType.name">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;" *ngSwitchCase="'room'">
+      <input matInput placeholder="" [(ngModel)]="data.room.name">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;" *ngSwitchCase="'room'">
+      <mat-label>Select room type</mat-label>
+      <mat-select [(ngModel)]="data.room.room_type_id">
+        <mat-option *ngFor="let roomType of data.room.roomTypes" [value]="+roomType.id">
+          {{roomType.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions style="float: right">
+    <button mat-button color="warning" (click)="cancel()">Cancel</button>
+    <button mat-button color="accent" *ngSwitchCase="'room-type'" [disabled]="!data.roomType.name"
+            [mat-dialog-close]="data.roomType">Ok
+    </button>
+
+    <button mat-button color="accent" *ngSwitchCase="'room'" [disabled]="!data.room.name && data.room.room_type_id !== 1"
+            [mat-dialog-close]="data.room">Ok
+    </button>
+  </div>
+</div>
+

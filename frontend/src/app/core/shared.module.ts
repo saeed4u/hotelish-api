@@ -16,7 +16,7 @@ import {
   MatTableModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatGridListModule,
+  MatGridListModule, MatSelectModule,
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuthStateService} from "../service/authstate.service";
@@ -25,6 +25,7 @@ import {ErrorService} from "../service/error.service";
 import {HotelRepo} from "./repo/hotel.repo";
 import {FileUploadModule} from "ng2-file-upload/ng2-file-upload";
 import {RoomTypeRepo} from "./repo/roomtype.repo";
+import {RoomRepo} from "./repo/room.repo";
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import {RoomTypeRepo} from "./repo/roomtype.repo";
     FileUploadModule,
     FlexLayoutModule,
     MatGridListModule,
+    MatSelectModule,
   ],
   exports: [
     CommonModule,
@@ -67,6 +69,7 @@ import {RoomTypeRepo} from "./repo/roomtype.repo";
     MatExpansionModule,
     FlexLayoutModule,
     MatGridListModule,
+    MatSelectModule,
   ],
   providers: [
     AuthStateService,
@@ -74,6 +77,7 @@ import {RoomTypeRepo} from "./repo/roomtype.repo";
     ErrorService,
     HotelRepo,
     RoomTypeRepo,
+    RoomRepo
   ]
 })
 export class SharedModule {

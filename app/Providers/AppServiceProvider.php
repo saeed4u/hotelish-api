@@ -64,10 +64,6 @@ class AppServiceProvider extends ServiceProvider
             return new RoomTypeService($this->app->make('crud_repo'));
         });
 
-        $this->app->singleton(RoomTypeService::class, function () {
-            return new RoomTypeService($this->app->make('crud_repo'));
-        });
-
         $this->app->singleton(PricingService::class, function () {
             return new PricingService($this->app->make('pricing_repo'));
         });

@@ -3,11 +3,12 @@
 namespace App\Http\Middleware;
 
 use App\Utils\ApiResponse;
+use App\Utils\Logging;
 use Closure;
 
 class UserIsAdminMiddleware
 {
-    use ApiResponse;
+    use ApiResponse, Logging;
     /**
      * Handle an incoming request.
      *
