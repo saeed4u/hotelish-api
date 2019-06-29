@@ -19,9 +19,9 @@ class RoomType extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function pricings(){
-        return $this->hasMany(Pricing::class);
+    public function pricing(){
+        return $this->hasOne(Pricing::class);
     }
 }

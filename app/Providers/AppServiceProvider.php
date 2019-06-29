@@ -4,10 +4,13 @@ namespace App\Providers;
 
 use App\Repo\Auth\AuthRepoImpl;
 use App\Repo\AuthRepo;
+use App\Repo\BookingRepo;
+use App\Repo\BookingRepoImpl;
 use App\Repo\Hotel\CrudRepoImpl;
 use App\Repo\Hotel\HotelRepo;
 use App\Repo\PricingRepo;
 use App\Service\AuthService;
+use App\Service\BookingService;
 use App\Service\HotelService;
 use App\Service\PricingService;
 use App\Service\RoomService;
@@ -47,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(AuthRepo::class, AuthRepoImpl::class);
         $this->app->singleton('crud_repo', CrudRepoImpl::class);
         $this->app->singleton('pricing_repo', PricingRepo::class);
+        $this->app->singleton(BookingRepo::class, BookingRepoImpl::class);
 
         $this->app->singleton(AuthService::class, function () {
             return new AuthService($this->app->make(AuthRepo::class));
@@ -66,6 +70,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(PricingService::class, function () {
             return new PricingService($this->app->make('pricing_repo'));
+        });
+
+        $this->app->singleton(BookingService::class, function () {
+            return new BookingService($this->app->make(BookingRepo::class));
         });
 
     }

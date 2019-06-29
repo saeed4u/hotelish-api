@@ -88,7 +88,7 @@ class RoomService extends CrudService
      * @param Room $room
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteRoom(Room $room)
+    public function deleteRoom($room)
     {
         try {
             if ($this->repo->delete($room)) {

@@ -64,6 +64,17 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
                 Route::delete('/{id}', 'PricingController@deletePricing');
             });
         });
+
+        //booking
+        Route::group(['prefix' => 'booking'], function () {
+            Route::get('', 'BookingController@getBookins');
+            Route::post('', 'BookingController@addBooking');
+
+            Route::group(['middleware' => 'booking'], function () {
+                Route::patch('/{id}', 'BookingController@updateBooking');
+                Route::delete('/{id}', 'BookingController@deleteBooking');
+            });
+        });
     });
 
 });
