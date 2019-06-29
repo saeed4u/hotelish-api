@@ -10,6 +10,18 @@ class Booking extends Model
 
     use SoftDeletes;
 
+    protected $fillable = [
+        'room_id',
+        'user_id',
+        'pricing_id',
+        'start_date',
+        'end_date',
+        'total_nights',
+        'total_price',
+        'customer_email',
+        'customer_name'
+    ];
+
     //
 
     /**

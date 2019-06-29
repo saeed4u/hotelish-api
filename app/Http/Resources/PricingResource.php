@@ -17,7 +17,7 @@ class PricingResource extends JsonResource
         return [
             'id' => $this->id,
             'room_type' => new RoomTypeResource($this->roomType),
-            'price' => number_format($this->price, 2),
+            'price' => number_format(($this->price / 100), 2),
             'currency' => '$',
             'added_by' => $this->added_by ? $this->addedBy->name : ''
         ];

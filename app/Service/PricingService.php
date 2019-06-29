@@ -29,7 +29,8 @@ class PricingService extends CrudService
             $pricingCollection = $this->repo->read(Pricing::where('room_type_id',$payload['room_type_id']));
             if ($pricingCollection->isEmpty()) {
                 $pricing = new Pricing();
-                $pricing->price = $payload['price'];
+                //convert to cents
+                $pricing->price = $payload['price'] * 100;
                 $pricing->room_type_id = $payload['room_type_id'];
                 $pricing->added_by = auth()->id();
             }else{
