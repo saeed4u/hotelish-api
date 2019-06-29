@@ -48,6 +48,7 @@ class PricingController extends Controller
      */
     public function addPricing(PricingRequest $request)
     {
+        $this->logAuth("Welll");
         $validated = $request->validated();
         return $this->service->addPricing($validated);
     }

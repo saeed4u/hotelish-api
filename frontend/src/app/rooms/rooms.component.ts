@@ -6,6 +6,9 @@ import {RoomTypeRepo} from "../core/repo/roomtype.repo";
 import {zip} from "rxjs/index";
 import {GenericDialogComponent} from "../dialog/genericdialog/genericdialog.component";
 import {DeleteConfirmationDialogComponent} from "../dialog/delete-confirmation-dialog/delete-confirmation-dialog.component";
+import {ImageViewer} from "../model/ImageViewer";
+import {ImageViewerDialogComponent} from "../dialog/image-viewer-dialog/image-viewer-dialog.component";
+import {ImageUploadComponent} from "../dialog/imageupload/imageupload.component";
 
 @Component({
   selector: 'app-room',
@@ -18,7 +21,7 @@ export class RoomsComponent implements OnInit {
   rooms = new MatTableDataSource<Room>();
   roomTypes: RoomType[];
 
-  displayedColumns: string[] = ['id', 'name', 'room type', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'room type', 'view images', 'actions'];
 
 
   constructor(private roomRepo: RoomRepo, private roomTypeRepo: RoomTypeRepo, private dialog: MatDialog) {
@@ -36,6 +39,29 @@ export class RoomsComponent implements OnInit {
         this.loading = false;
         console.log(err);
       }
+    });
+
+  }
+
+  viewImages(room: Room) {
+    const data: ImageViewer = {
+      images: room.images,
+      title: `${room.name}\'s Images`,
+      addCallback: () => {
+        this.dialog.open(ImageUploadComponent, {
+          width: '70%', height: '50%', data: {
+            url: `/room/${room.id}/image`,
+            callback: () => {
+              this.roomRepo.refreshData();
+              this.roomRepo.getRooms();
+            }
+          }
+        });
+      }
+    };
+    this.dialog.open(ImageViewerDialogComponent, {
+      width: '70%', height: '50%',
+      data: data
     });
 
   }
@@ -100,7 +126,6 @@ export class RoomsComponent implements OnInit {
     });
   }
 
-
   private openDialog(data: object, callback): void {
     const dialogRef = this.dialog.open(GenericDialogComponent, {
       width: '450px',
@@ -117,7 +142,6 @@ export class RoomsComponent implements OnInit {
   deleteRoom(room: Room) {
     this.openDeleteDialog(room);
   }
-
 
   private openDeleteDialog(room: Room) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
@@ -144,6 +168,4 @@ export class RoomsComponent implements OnInit {
       }
     });
   }
-
-
 }

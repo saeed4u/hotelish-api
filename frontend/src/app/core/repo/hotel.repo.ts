@@ -13,6 +13,10 @@ export class HotelRepo {
 
   }
 
+  refreshData() {
+    this.localStorage.store('refresh_data.hotel', true);
+  }
+
   getHotel(): Observable<Hotel> {
     const cachedHotel = this.localStorage.retrieve('hotel');
     const freshData = this.localStorage.retrieve('refresh_data.hotel');

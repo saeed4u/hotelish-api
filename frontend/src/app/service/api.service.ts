@@ -6,7 +6,7 @@ import {
   BaseResponse,
   Hotel,
   HotelResponse,
-  LoginResponse,
+  LoginResponse, Pricing,
   Room, RoomResponse, RoomsResponse,
   RoomType,
   RoomTypeResponse,
@@ -66,5 +66,24 @@ export class ApiService {
   public deleteRoom(roomId: number): Observable<BaseResponse> {
     return this.http.delete<BaseResponse>(`${environment.baseApiUrl}/room/${roomId}`);
   }
+
+
+  public getPricings(): Observable<RoomsResponse> {
+    return this.http.get<RoomsResponse>(`${environment.baseApiUrl}/pricing`);
+  }
+
+  public addPricing(pricing: Pricing): Observable<RoomResponse> {
+    return this.http.post<RoomResponse>(`${environment.baseApiUrl}/pricing`, pricing);
+  }
+
+  public updatePricing(pricing: Pricing): Observable<RoomResponse> {
+    return this.http.patch<RoomResponse>(`${environment.baseApiUrl}/pricing/${pricing.id}`, pricing);
+  }
+
+  public deletePricing(pricingId: number): Observable<BaseResponse> {
+    return this.http.delete<BaseResponse>(`${environment.baseApiUrl}/pricing/${pricingId}`);
+  }
+
+
 
 }

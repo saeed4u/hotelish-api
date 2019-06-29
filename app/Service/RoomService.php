@@ -13,6 +13,9 @@ use App\Hotel;
 use App\Http\Resources\RoomResource;
 use App\Repo\Repo;
 use App\Room;
+use App\RoomImage;
+use Exception;
+use Illuminate\Http\UploadedFile;
 
 class RoomService extends CrudService
 {
@@ -95,6 +98,30 @@ class RoomService extends CrudService
             $this->logException($exception);
         }
         return $this->badGateway();
+    }
+
+    /**
+     * @param Room $room
+     * @param UploadedFile $image
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addRoomImage($room,UploadedFile $image)
+    {
+        try {
+
+            $path = $image->store('public/room-images');
+            $image = new RoomImage();
+            $image->image = $path;
+            $image->room_id = $room->id;
+            if($this->repo->create($image)) {
+                return $this->success();
+            }
+        } catch (Exception $exception) {
+            $this->logException($exception);
+        }
+
+        return $this->badGateway('An error while adding room image');
+
     }
 
 }

@@ -13,7 +13,7 @@ class PricingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class PricingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'room_type_id' => 'required|exists:room_types,id',
         ];
     }
 }

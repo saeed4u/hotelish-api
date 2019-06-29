@@ -26,6 +26,7 @@ import {HotelRepo} from "./repo/hotel.repo";
 import {FileUploadModule} from "ng2-file-upload/ng2-file-upload";
 import {RoomTypeRepo} from "./repo/roomtype.repo";
 import {RoomRepo} from "./repo/room.repo";
+import {PricingRepo} from "./repo/pricing.repo";
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import {RoomRepo} from "./repo/room.repo";
     ErrorService,
     HotelRepo,
     RoomTypeRepo,
-    RoomRepo
+    RoomRepo,
+    PricingRepo,
   ]
 })
 export class SharedModule {

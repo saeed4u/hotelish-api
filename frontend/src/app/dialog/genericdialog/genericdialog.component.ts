@@ -14,7 +14,6 @@ export class GenericDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
   }
 
   cancel() {

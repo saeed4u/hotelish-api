@@ -32,6 +32,7 @@ export interface Pricing {
   id: number;
   room_type: RoomType;
   price: string;
+  currency: string;
   added_by: string;
 }
 
@@ -91,3 +92,10 @@ export class RoomResponse extends BaseResponse {
   public room: Room;
 }
 
+export class PricingsResponse extends BaseResponse {
+  public pricings: Array<Pricing>;
+}
+
+export class PricingResponse extends BaseResponse{
+  public pricing: Pricing;
+}

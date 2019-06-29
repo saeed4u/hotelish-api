@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {MatDialogRef} from "@angular/material";
+import {Component, Inject, OnInit, ViewChild} from "@angular/core";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {ImageUploadService} from "../../service/imageupload.service";
 import {forkJoin} from "rxjs/index";
 import {FileUploadResult} from "../../model/ImageUploadResult";
+import {ImageUpload} from "../../model/ImageUpload";
 
 @Component({
   selector: 'app-imageupload',
@@ -22,7 +23,7 @@ export class ImageUploadComponent implements OnInit {
 
   public files: Set<File> = new Set();
 
-  constructor(private dialogRef: MatDialogRef<ImageUploadComponent>, private imageUploadService: ImageUploadService) {
+  constructor(private dialogRef: MatDialogRef<ImageUploadComponent>, @Inject(MAT_DIALOG_DATA) public data: ImageUpload, private imageUploadService: ImageUploadService) {
   }
 
   ngOnInit() {
@@ -31,6 +32,9 @@ export class ImageUploadComponent implements OnInit {
     this.showCancelButton = true;
     this.uploading = false;
     this.uploadSuccessful = false;
+    this.dialogRef.beforeClosed().subscribe(() => {
+      this.data.callback(this.uploadSuccessful);
+    });
   }
 
   onFilesAdded() {
@@ -40,12 +44,12 @@ export class ImageUploadComponent implements OnInit {
         this.files.add(files[key]);
       }
     }
-    if(this.files.size > 0 && !this.canBeClosed){
-     // this.canBeClosed = true;
+    if (this.files.size > 0 && !this.canBeClosed) {
+      // this.canBeClosed = true;
     }
   }
 
-  closeDialog() {
+  uploadFiles() {
     if (this.uploadSuccessful) {
       this.dialogRef.close();
       return;
@@ -53,7 +57,7 @@ export class ImageUploadComponent implements OnInit {
 
     this.uploading = true;
 
-    this.progress = this.imageUploadService.upload(this.files, '/admin/hotel/image');
+    this.progress = this.imageUploadService.upload(this.files, this.data.url);
     const allProgressObservables = [];
     for (const key in this.progress) {
       allProgressObservables.push(this.progress[key].progress);
@@ -72,6 +76,7 @@ export class ImageUploadComponent implements OnInit {
         this.dialogRef.disableClose = true;
         this.uploadSuccessful = true;
         this.uploading = false;
+        this.dialogRef.close();
       },
       error: err => {
         console.log(err);

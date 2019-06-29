@@ -69,7 +69,7 @@
               Images
             </mat-expansion-panel-header>
             <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
-              <img mat-card-image  fxFlex="0 1 calc(25% - 32px)" *ngFor="let image of hotelImmutable.images" src="{{image.src}}" style="width: 200px; height: 80px;">
+              <img mat-card-image  fxFlex="0 1 calc(25% - 32px)" *ngFor="let image of hotelImmutable.images" src="{{image.src}}" style="width: 200px;">
               <div  fxFlex="0 1 calc(25% - 32px)">
                 <button mat-raised-button (click)="openUploadDialog()">Add Image</button>
               </div>
