@@ -31,10 +31,13 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
             Route::get('', 'RoomController@getRooms');
             Route::post('', 'RoomController@addRoom')->middleware('user.is.admin');
 
-            Route::group(['middleware' => 'room'], function () {
-                Route::get('/{id}', 'RoomController@getRoom');
-                Route::patch('/{id}', 'RoomController@updateRoom')->middleware('user.is.admin');
-                Route::delete('/{id}', 'RoomController@deleteRoom')->middleware('user.is.admin');
+            Route::group(['prefix' => '/{id}', 'middleware' => 'room'], function () {
+                Route::get('', 'RoomController@getRoom');
+                Route::group(['middleware' => 'user.is.admin'], function () {
+                    Route::patch('', 'RoomController@updateRoom');
+                    Route::delete('', 'RoomController@deleteRoom');
+                    Route::post('image', 'RoomController@addRoomImage');
+                });
             });
         });
 

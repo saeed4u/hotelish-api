@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddImageRequest;
+use App\Http\Requests\AddRoomImageRequest;
 use App\Http\Requests\RoomRequest;
 use App\Service\RoomService;
-use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
@@ -63,6 +64,12 @@ class RoomController extends Controller
     public function deleteRoom()
     {
         return $this->service->deleteRoom($_REQUEST['room']);
+    }
+
+    public function addRoomImage(AddImageRequest $request)
+    {
+        $request->validated();
+        return $this->service->addRoomImage($_REQUEST['room'], $request->file('image'));
     }
 
 }

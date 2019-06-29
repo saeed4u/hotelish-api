@@ -12,6 +12,7 @@ namespace App\Service;
 use App\Hotel;
 use App\Http\Resources\PricingResource;
 use App\Pricing;
+use Illuminate\Database\Eloquent\Collection;
 
 class PricingService extends CrudService
 {
@@ -22,14 +23,25 @@ class PricingService extends CrudService
     public function addPricing(array $payload)
     {
         try {
-            $pricing = new Pricing();
-            $pricing->price = $payload['price'];
-            $pricing->room_type_id = $payload['room_type_id'];
-            $pricing->added_by = auth()->id();
+            /**
+             * @var Collection $pricingCollection
+             */
+            $pricingCollection = $this->repo->read(Pricing::where('room_type_id',$payload['room_type_id']));
+            if ($pricingCollection->isEmpty()) {
+                $pricing = new Pricing();
+                $pricing->price = $payload['price'];
+                $pricing->room_type_id = $payload['room_type_id'];
+                $pricing->added_by = auth()->id();
+            }else{
+                $pricing = $pricingCollection->first();
+                $pricing->price = $payload['price'];
+            }
+
             if ($this->repo->create($pricing)) {
                 return $this->success('Pricing created successfully',
                     ['pricing' => new PricingResource($pricing->refresh())]);
             }
+
         } catch (\Exception $exception) {
             $this->logException($exception);
         }
@@ -42,7 +54,7 @@ class PricingService extends CrudService
      */
     public function getPricing($pricingId)
     {
-        return $this->success('Pricing retrieved', new PricingResource(Pricing::find($pricingId)));
+        return $this->success('Pricing retrieved', ['pricing' =>new PricingResource(Pricing::find($pricingId))]);
     }
 
     /**

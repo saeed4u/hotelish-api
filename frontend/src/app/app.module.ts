@@ -23,6 +23,8 @@ import { RoomTypeComponent } from './roomtypes/roomtypes.component';
 import { GenericDialogComponent } from './dialog/genericdialog/genericdialog.component';
 import { DeleteConfirmationDialogComponent } from './dialog/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { ImageViewerDialogComponent } from './dialog/image-viewer-dialog/image-viewer-dialog.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,15 @@ import { RoomsComponent } from './rooms/rooms.component';
     RoomTypeComponent,
     GenericDialogComponent,
     DeleteConfirmationDialogComponent,
-    RoomsComponent
+    RoomsComponent,
+    ImageViewerDialogComponent,
+    PricingComponent,
   ],
   entryComponents: [
     ImageUploadComponent,
     GenericDialogComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    ImageViewerDialogComponent,
   ],
   imports: [
     BrowserModule,

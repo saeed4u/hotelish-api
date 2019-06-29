@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+    <img mat-card-image fxFlex="0 1 calc(25% - 32px)" *ngFor="let image of data.images" src="{{image.src}}"
+         style="width: 200px; margin-right: 10px">
+    <div fxFlex="0 1 calc(25% - 32px)">
+      <button mat-raised-button (click)="dialogRef.close(); data.addCallback()">Add Image</button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions style="float: right">
+  <button mat-button color="warning" (click)="cancel()">Close</button>
+</div>

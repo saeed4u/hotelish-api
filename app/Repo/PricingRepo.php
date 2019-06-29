@@ -15,16 +15,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class PricingRepo extends CrudRepoImpl
 {
+
     public function create(Model $model): bool
     {
         /**
          * @var Pricing $pricing
          */
-        $pricing = Pricing::where('room_type_id', $model->room_type_id)->first();
+      /*  $pricing = Pricing::where('room_type_id', $model->room_type_id)->first();
         if ($pricing) {
             $pricing->price = $model->price;
-            return parent::create($pricing);
-        }
+            return $pricing->save();
+        }*/
         return parent::create($model);
     }
 }

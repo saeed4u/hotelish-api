@@ -8,15 +8,20 @@ import {Injectable} from "@angular/core";
  */
 
 @Injectable()
-export class RoomRepo{
+export class RoomRepo {
   constructor(private apiService: ApiService, private localStorage: LocalStorageService) {
 
+  }
+
+
+  refreshData() {
+    this.localStorage.store('refresh_data.rooms', true);
   }
 
   getRooms(): Observable<Room[]> {
     return Observable.create((observer) => {
       const cachedRooms = this.localStorage.retrieve('rooms');
-      const freshData = this.localStorage.retrieve('fresh_data.rooms') || !cachedRooms;
+      const freshData = this.localStorage.retrieve('refresh_data.rooms') || !cachedRooms;
       if (!freshData) {
         observer.next(cachedRooms);
         observer.complete();
@@ -28,6 +33,7 @@ export class RoomRepo{
           next: (response: RoomsResponse) => {
             const rooms = response.rooms;
             this.localStorage.store('rooms', rooms);
+            this.localStorage.store('refresh_data.rooms', false);
             observer.next(rooms);
             observer.complete();
           },

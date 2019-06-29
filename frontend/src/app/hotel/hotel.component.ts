@@ -6,6 +6,7 @@ import {isEqual} from "lodash";
 import {NotificationService} from "../service/notification.service";
 import {MatDialog} from "@angular/material";
 import {ImageUploadComponent} from "../dialog/imageupload/imageupload.component";
+import {ImageUpload} from "../model/ImageUpload";
 
 @Component({
   selector: 'app-hotel',
@@ -32,6 +33,10 @@ export class HotelComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.getHotelInfo();
+  }
+
+  private getHotelInfo() {
     this.repo.getHotel()
       .subscribe({
         next: (hotel: Hotel) => {
@@ -54,7 +59,16 @@ export class HotelComponent implements OnInit {
   }
 
   openUploadDialog() {
-    this.dialog.open(ImageUploadComponent, {width: '70%', height: '50%'});
+    const data: ImageUpload = {
+      url: '/hotel/image',
+      callback: (wasSuccessful) => {
+        if (wasSuccessful) {
+          this.repo.refreshData();
+          this.getHotelInfo();
+        }
+      }
+    };
+    this.dialog.open(ImageUploadComponent, {width: '70%', height: '50%', data: data});
   }
 
   updateHotel() {

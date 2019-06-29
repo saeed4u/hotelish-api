@@ -21,6 +21,6 @@
 
   <mat-dialog-actions class="actions">
     <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
+    <button mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="uploadFiles()">{{primaryButtonText}}</button>
   </mat-dialog-actions>
 </div>
