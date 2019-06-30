@@ -1,8 +1,0 @@
-<h1 mat-dialog-title>Delete confirmation</h1>
-<div mat-dialog-content>
-  <span>{{data.message}}</span>
-</div>
-<div mat-dialog-actions style="float: right">
-  <button mat-button color="warning" (click)="cancel()">Cancel</button>
-  <button mat-button color="accent" [mat-dialog-close]="data.result" cdkFocusInitial>Yes, delete!</button>
-</div>
