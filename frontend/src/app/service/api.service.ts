@@ -4,10 +4,18 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
 import {
   BaseResponse,
+  Booking,
+  BookingResponse,
+  BookingsResponse,
   Hotel,
   HotelResponse,
-  LoginResponse, Pricing,
-  Room, RoomResponse, RoomsResponse,
+  LoginResponse,
+  Pricing,
+  PricingResponse,
+  PricingsResponse,
+  Room,
+  RoomResponse,
+  RoomsResponse,
   RoomType,
   RoomTypeResponse,
   RoomTypesResponse
@@ -67,23 +75,37 @@ export class ApiService {
     return this.http.delete<BaseResponse>(`${environment.baseApiUrl}/room/${roomId}`);
   }
 
-
-  public getPricings(): Observable<RoomsResponse> {
-    return this.http.get<RoomsResponse>(`${environment.baseApiUrl}/pricing`);
+  public getPricings(): Observable<PricingsResponse> {
+    return this.http.get<PricingsResponse>(`${environment.baseApiUrl}/pricing`);
   }
 
-  public addPricing(pricing: Pricing): Observable<RoomResponse> {
-    return this.http.post<RoomResponse>(`${environment.baseApiUrl}/pricing`, pricing);
+  public addPricing(pricing: Pricing): Observable<PricingResponse> {
+    return this.http.post<PricingResponse>(`${environment.baseApiUrl}/pricing`, pricing);
   }
 
-  public updatePricing(pricing: Pricing): Observable<RoomResponse> {
-    return this.http.patch<RoomResponse>(`${environment.baseApiUrl}/pricing/${pricing.id}`, pricing);
+  public updatePricing(pricing: Pricing): Observable<PricingResponse> {
+    return this.http.patch<PricingResponse>(`${environment.baseApiUrl}/pricing/${pricing.id}`, pricing);
   }
 
   public deletePricing(pricingId: number): Observable<BaseResponse> {
     return this.http.delete<BaseResponse>(`${environment.baseApiUrl}/pricing/${pricingId}`);
   }
 
+  public getBookings(): Observable<BookingsResponse> {
+    return this.http.get<BookingsResponse>(`${environment.baseApiUrl}/booking`);
+  }
+
+  public addBooking(booking: Booking): Observable<BookingResponse> {
+    return this.http.post<BookingResponse>(`${environment.baseApiUrl}/booking`, booking);
+  }
+
+  public updateBooking(booking: Booking): Observable<BookingResponse> {
+    return this.http.patch<BookingResponse>(`${environment.baseApiUrl}/booking/${booking.id}`, booking);
+  }
+
+  public deleteBooking(bookingId: number): Observable<BaseResponse> {
+    return this.http.delete<BaseResponse>(`${environment.baseApiUrl}/booking/${bookingId}`);
+  }
 
 
 }

@@ -24,7 +24,7 @@ class RoomTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:room_types,name',
         ];
     }
 

@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {PricingRepo} from "../core/repo/pricing.repo";
+import {PricingRepo} from "../core/repos/pricing.repo";
 import {MatDialog, MatTableDataSource} from "@angular/material";
 import {Pricing, RoomType} from "../model/Responses";
-import {RoomTypeRepo} from "../core/repo/roomtype.repo";
+import {RoomTypeRepo} from "../core/repos/roomtype.repo";
 import {zip} from "rxjs/index";
 import {DeleteConfirmationDialogComponent} from "../dialog/delete-confirmation-dialog/delete-confirmation-dialog.component";
 import {GenericDialogComponent} from "../dialog/genericdialog/genericdialog.component";
@@ -53,7 +53,7 @@ export class PricingComponent implements OnInit {
       type: 'pricing'
     }, (data: Pricing) => {
       this.loading = true;
-      delete data['roomTypes';]
+      delete data['roomTypes'];
       this.pricingRepo.addPricing(data)
         .subscribe({
           next: (pricings: Pricing[]) => {

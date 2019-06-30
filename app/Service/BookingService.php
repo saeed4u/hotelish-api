@@ -153,6 +153,8 @@ class BookingService
                 $totalPrice = $totalNights * $pricing->price;
                 $payload['total_nights'] = $totalNights;
                 $payload['total_price'] = $totalPrice;
+                $payload['start_date'] = $startDate->toDateString();
+                $payload['end_date'] = $endDate->toDateString();
                 if (isset($payload['user_id'])) {
                     $user = $this->repo->read(User::whereKey($payload['user_id']))->first();
                     $payload['customer_name'] = $user->name;

@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {RoomTypeRepo} from "../core/repo/roomtype.repo";
+import {RoomTypeRepo} from "../core/repos/roomtype.repo";
 import {RoomType} from "../model/Responses";
 import {MatDialog, MatTableDataSource} from "@angular/material";
 import {GenericDialogComponent} from "../dialog/genericdialog/genericdialog.component";

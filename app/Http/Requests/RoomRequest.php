@@ -26,7 +26,7 @@ class RoomRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:rooms,name',
             'room_type_id' => 'required|exists:room_types,id',
         ];
     }

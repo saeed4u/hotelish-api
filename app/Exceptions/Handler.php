@@ -62,5 +62,6 @@ class Handler extends ExceptionHandler
                 return $this->unauthorised('Invalid access token provided');
             }
         }
+        return parent::render($request,$exception);
     }
 }

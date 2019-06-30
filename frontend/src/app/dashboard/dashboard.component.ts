@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HotelRepo} from "../core/repo/hotel.repo";
+import {HotelRepo} from "../core/repos/hotel.repo";
 
 @Component({
   selector: 'app-dashboard',

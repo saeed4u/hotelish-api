@@ -8,11 +8,16 @@
       <ul fxLayout fxLayoutGap="20px">
         <li>
           <button mat-icon-button
+                  matTooltip="Bookings" (click)="navigateTo('/bookings')">
+            <mat-icon>schedule</mat-icon>
+          </button>
+        </li>
+        <li>
+          <button mat-icon-button
                   matTooltip="Hotel info" (click)="navigateTo('/hotel')">
             <mat-icon>hotel</mat-icon>
           </button>
         </li>
-
         <li>
           <button mat-icon-button
                   matTooltip="Hotel rooms" (click)="navigateTo('/rooms')">
@@ -24,11 +29,6 @@
             <mat-icon>settings</mat-icon>
           </button>
           <mat-menu #auth="matMenu">
-            <button mat-menu-item (click)="logout()">
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Sign out</span>
-            </button>
-
             <button mat-menu-item (click)="navigateTo('/room-types')">
               <span>Room Types</span>
             </button>
@@ -36,6 +36,10 @@
             <button mat-menu-item (click)="navigateTo('/pricings')">
               <span>Pricing</span>
             </button>
+            <button mat-menu-item (click)="logout()">
+              <span>Sign out</span>
+            </button>
+
           </mat-menu>
         </li>
       </ul>

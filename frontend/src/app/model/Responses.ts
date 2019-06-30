@@ -37,11 +37,15 @@ export interface Pricing {
 }
 
 export interface Booking {
+  id: number;
   room: Room;
-  user: User;
-  pricing: Pricing;
   start_date: string;
   end_date: string;
+  customer_email: string;
+  customer_name: string;
+  total_nights: number;
+  total_price: string;
+  currency: string;
 }
 
 export interface Room {
@@ -96,6 +100,14 @@ export class PricingsResponse extends BaseResponse {
   public pricings: Array<Pricing>;
 }
 
-export class PricingResponse extends BaseResponse{
+export class PricingResponse extends BaseResponse {
   public pricing: Pricing;
+}
+
+export class BookingsResponse extends BaseResponse {
+  public bookings: Array<Booking>;
+}
+
+export class BookingResponse extends BaseResponse {
+  public booking: Booking;
 }

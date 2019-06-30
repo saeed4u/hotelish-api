@@ -19,6 +19,16 @@ class BookingController extends Controller
      */
     private $service;
 
+    /**
+     * BookingController constructor.
+     * @param BookingService $service
+     */
+    public function __construct(BookingService $service)
+    {
+        $this->service = $service;
+    }
+
+
     public function getBookings()
     {
         return $this->service->getAll();
@@ -29,7 +39,7 @@ class BookingController extends Controller
         return $this->service->addBooking($bookingRequest->validated());
     }
 
-    public function editBooking(BookingRequest $bookingRequest)
+    public function updateBooking(BookingRequest $bookingRequest)
     {
         return $this->service->editBooking($_REQUEST['booking'], $bookingRequest->validated());
     }

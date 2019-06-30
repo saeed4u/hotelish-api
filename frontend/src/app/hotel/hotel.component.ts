@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {HotelRepo} from "../core/repo/hotel.repo";
+import {HotelRepo} from "../core/repos/hotel.repo";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Hotel} from "../model/Responses";
 import {isEqual} from "lodash";

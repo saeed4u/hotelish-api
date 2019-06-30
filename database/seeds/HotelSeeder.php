@@ -11,6 +11,7 @@ class HotelSeeder extends Seeder
      */
     public function run()
     {
+        \Illuminate\Support\Facades\DB::table('hotels')->truncate();
         $hotel = new \App\Hotel();
         $hotel->name = 'Test hotel';
         $hotel->email = 'hotel@testhotel.com';

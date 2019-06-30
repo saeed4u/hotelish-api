@@ -20,6 +20,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
     });
 
     Route::group(['middleware' => 'api.auth'], function () {
+
         Route::group(['prefix' => 'hotel'], function () {
             Route::get('', 'HotelController@getHotel');
             Route::post('image', 'HotelController@addHotelImage')->middleware('user.is.admin');
@@ -67,7 +68,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
 
         //booking
         Route::group(['prefix' => 'booking'], function () {
-            Route::get('', 'BookingController@getBookins');
+            Route::get('', 'BookingController@getBookings');
             Route::post('', 'BookingController@addBooking');
 
             Route::group(['middleware' => 'booking'], function () {
