@@ -9,4 +9,6 @@ To seed the database, run **php artisan db:seed**
 
 To install frontend dependencies, run **npm i** from the **frontend** directory. The base url for API calls is stored in src/environments/environment.ts file. Please change it to reflect the backend's url and port.
 
-This task uses **clean code** by employing *request - validation - controller - service - repo - model* at the backend where possible and *repository pattern(cache before network)* at the frontend. It also relies heavily on dependency injection. 
+This task uses **clean code** by employing *request - validation - controller - service - repo - model* at the backend where possible and *repository pattern(cache before network)* at the frontend. Both backend and frontend rely heavily on dependency injection. 
+
+I used RxJS for some part of the frontend
