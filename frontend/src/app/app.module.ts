@@ -25,6 +25,7 @@ import { DeleteConfirmationDialogComponent } from './dialog/delete-confirmation-
 import { RoomsComponent } from './rooms/rooms.component';
 import { ImageViewerDialogComponent } from './dialog/image-viewer-dialog/image-viewer-dialog.component';
 import { PricingComponent } from './pricing/pricing.component';
+import { BookingComponent } from './booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PricingComponent } from './pricing/pricing.component';
     RoomsComponent,
     ImageViewerDialogComponent,
     PricingComponent,
+    BookingComponent,
   ],
   entryComponents: [
     ImageUploadComponent,

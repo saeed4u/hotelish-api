@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {Room, RoomType} from "../model/Responses";
 import {MatDialog, MatTableDataSource} from "@angular/material";
-import {RoomRepo} from "../core/repo/room.repo";
-import {RoomTypeRepo} from "../core/repo/roomtype.repo";
+import {RoomRepo} from "../core/repos/room.repo";
+import {RoomTypeRepo} from "../core/repos/roomtype.repo";
 import {zip} from "rxjs/index";
 import {GenericDialogComponent} from "../dialog/genericdialog/genericdialog.component";
 import {DeleteConfirmationDialogComponent} from "../dialog/delete-confirmation-dialog/delete-confirmation-dialog.component";

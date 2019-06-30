@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminUserSeeder extends Seeder
 {
@@ -11,6 +12,7 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->truncate();
         $user = new \App\User();
         $user->first_name = 'Saeed';
         $user->last_name = 'Issah';

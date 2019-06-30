@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+
+use Waavi\Sanitizer\Laravel\FormRequest;
 
 class BookingRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class BookingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,12 @@ class BookingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'room_id' => 'required|exists:rooms,id',
+            'user_id' => 'required_with_out:name,email|exists:users,id',
+            'name' => 'required_unless:user_id,null',
+            'email' => 'required_unless:user_id,null|email',
+            'start_date' => 'required|date|after:yesterday',
+            'end_date' => 'required|date|after_or_equal:start_date',
         ];
     }
 }

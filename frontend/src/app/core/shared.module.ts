@@ -3,30 +3,34 @@ import {CommonModule} from "@angular/common";
 import {
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
   MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
   MatProgressBarModule,
+  MatSelectModule,
   MatSidenavModule,
   MatTableModule,
   MatToolbarModule,
-  MatTooltipModule,
-  MatGridListModule, MatSelectModule,
+  MatTooltipModule
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuthStateService} from "../service/authstate.service";
 import {NotificationService} from "../service/notification.service";
 import {ErrorService} from "../service/error.service";
-import {HotelRepo} from "./repo/hotel.repo";
+import {HotelRepo} from "./repos/hotel.repo";
 import {FileUploadModule} from "ng2-file-upload/ng2-file-upload";
-import {RoomTypeRepo} from "./repo/roomtype.repo";
-import {RoomRepo} from "./repo/room.repo";
-import {PricingRepo} from "./repo/pricing.repo";
+import {RoomTypeRepo} from "./repos/roomtype.repo";
+import {RoomRepo} from "./repos/room.repo";
+import {PricingRepo} from "./repos/pricing.repo";
+import {MatMomentDateModule} from "@angular/material-moment-adapter";
+import {BookingRepo} from "./repos/booking.repo";
 
 @NgModule({
   imports: [
@@ -49,6 +53,8 @@ import {PricingRepo} from "./repo/pricing.repo";
     FlexLayoutModule,
     MatGridListModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   exports: [
     CommonModule,
@@ -71,6 +77,8 @@ import {PricingRepo} from "./repo/pricing.repo";
     FlexLayoutModule,
     MatGridListModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   providers: [
     AuthStateService,
@@ -80,6 +88,7 @@ import {PricingRepo} from "./repo/pricing.repo";
     RoomTypeRepo,
     RoomRepo,
     PricingRepo,
+    BookingRepo,
   ]
 })
 export class SharedModule {

@@ -62,7 +62,7 @@ export class PricingRepo{
     });
   }
 
-  updatePricing(pricing: Pricing): Observable<Pricing[]> {
+  updatePricing(pricing): Observable<Pricing[]> {
     return Observable.create((observer) => {
       this.apiService.updatePricing(pricing)
         .subscribe({

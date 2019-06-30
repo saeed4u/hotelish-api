@@ -12,7 +12,7 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('countries')->delete();
+        DB::table('countries')->truncate();
         $countries = array(
             array('iso_code' => 'US', 'name' => 'United States'),
             array('iso_code' => 'CA', 'name' => 'Canada'),
