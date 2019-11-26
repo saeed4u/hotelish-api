@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('user_type', \App\User::$USER_TYPES);
+            $table->enum('user_type', User::$USER_TYPES);
             $table->boolean('first_login')->nullable();
             $table->timestamp('last_login')->nullable();
             $table->string('last_ip')->default('');

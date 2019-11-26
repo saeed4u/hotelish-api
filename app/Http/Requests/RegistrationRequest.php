@@ -22,6 +22,7 @@ class RegistrationRequest extends BaseRequest
     public function rules()
     {
         return [
+            'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required'
         ];
@@ -37,6 +38,7 @@ class RegistrationRequest extends BaseRequest
     public function messages()
     {
         return [
+            'name.required' => 'Your name is required for registration',
             'email.required' => 'Your email is required for registration',
             'email.unique' => 'Sorry, that email is already in our system!',
             'password.required' => 'Your password is required for registration'

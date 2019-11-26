@@ -47,7 +47,7 @@ class HotelService
              */
             $hotelCollection = $this->repo->read($queryBuilder);
             return $this->success('Hotel retrieved successfully',
-                ['hotel' => new HotelResource($hotelCollection->first())]);
+                ['hotels' => HotelResource::collection($hotelCollection->get())]);
         } catch (\Exception $exception) {
             $this->logException($exception);
         }
