@@ -16,7 +16,7 @@ class CreatePricingsTable extends Migration
         Schema::create('pricings', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('room_type_id');
-            $table->string('currency')->default('USD');
+            $table->string('currency')->default('€');
             $table->decimal('price')->default(0.00);
             $table->unsignedInteger('added_by')->nullable();
             $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade')->onUpdate('cascade');
