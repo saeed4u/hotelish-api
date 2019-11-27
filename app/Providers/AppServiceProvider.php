@@ -9,6 +9,8 @@ use App\Repo\BookingRepoImpl;
 use App\Repo\Hotel\CrudRepoImpl;
 use App\Repo\Hotel\HotelRepo;
 use App\Repo\PricingRepo;
+use App\Repository\Device\DeviceRepo;
+use App\Repository\Device\DeviceRepositoryImpl;
 use App\Service\AuthService;
 use App\Service\BookingService;
 use App\Service\HotelService;
@@ -51,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('crud_repo', CrudRepoImpl::class);
         $this->app->singleton('pricing_repo', PricingRepo::class);
         $this->app->singleton(BookingRepo::class, BookingRepoImpl::class);
+        $this->app->singleton(DeviceRepo::class, DeviceRepositoryImpl::class);
 
         $this->app->singleton(AuthService::class, function () {
             return new AuthService($this->app->make(AuthRepo::class));

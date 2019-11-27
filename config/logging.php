@@ -43,10 +43,15 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
         ],
-
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
+            'level' => 'debug',
+            'days' => 7,
+        ],
+        'device' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/device.log'),
             'level' => 'debug',
             'days' => 7,
         ],
@@ -68,7 +73,6 @@ return [
             'level' => 'info',
             'days' => 7,
         ],
-
         'queries' => [
             'driver' => 'daily',
             'path' => storage_path('logs/queries/app-queries.log'),

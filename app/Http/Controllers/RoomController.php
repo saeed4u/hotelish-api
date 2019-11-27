@@ -21,7 +21,6 @@ class RoomController extends Controller
     public function __construct(RoomService $service)
     {
         $this->service = $service;
-        $this->logAuth("contructor");
     }
 
     /**

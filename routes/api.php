@@ -19,7 +19,12 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
         Route::post('logout', 'AuthController@logout')->middleware('api.auth');
     });
 
-    Route::group(['middleware' => 'api.auth'], function () {
+    Route::group(['prefix' => 'device'], function () {
+        Route::post('register', 'DeviceController@registerDevice');
+        Route::post('update-fcm-token', 'DeviceController@updteFcmToken')->middleware('device');
+    });
+
+    Route::group(['middleware' => ['device', 'api.auth']], function () {
 
         Route::group(['prefix' => 'hotel'], function () {
             Route::get('', 'HotelController@getHotel');

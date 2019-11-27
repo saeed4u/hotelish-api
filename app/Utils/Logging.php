@@ -25,6 +25,10 @@ trait Logging
     {
         Log::channel('auth')->info($message);
     }
+    function logDevice($message)
+    {
+        Log::channel('device')->info($message);
+    }
 
     function logException(Exception $exception)
     {

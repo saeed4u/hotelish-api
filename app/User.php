@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Utils\Constants;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -79,4 +80,23 @@ class User extends Authenticatable implements JWTSubject
     public function getNameAttribute(){
         return $this->first_name .' '.$this->last_name;
     }
+
+
+    public function devices()
+    {
+        $userDevices = $this->userDevices;
+        $devices = collect();
+        $userDevices->each(function (UserOnDevice $userDevice) use ($devices) {
+            $devices->push($userDevice->device);
+        });
+
+        return $devices;
+    }
+
+    public function userDevices()
+    {
+        return $this->hasMany(UserOnDevice::class)->with('device')->where('status_code', Constants::$ACTIVE);
+    }
+
+
 }
