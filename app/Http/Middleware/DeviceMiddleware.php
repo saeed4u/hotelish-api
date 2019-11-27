@@ -38,7 +38,7 @@ class DeviceMiddleware
         $this->logDevice("Device ID = $deviceId");
         if ($deviceId) {
             $device = $this->deviceRepo->get($deviceId);
-            if (!is_null($device) && $device->is_active) {
+            if (!is_null($device)) {
                 $_REQUEST['device'] = $device;
                 return $next($request);
             }
