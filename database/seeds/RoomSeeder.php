@@ -21,7 +21,6 @@ class RoomSeeder extends Seeder
             ['name' => 'B4', 'room_type_id' => 1],
             ['name' => 'B2', 'room_type_id' => 2],
             ['name' => 'B3', 'room_type_id' => 2],
-            ['name' => 'B4', 'room_type_id' => 1],
             ['name' => 'C1', 'room_type_id' => 2],
             ['name' => 'D1', 'room_type_id' => 3],
             ['name' => 'D2', 'room_type_id' => 3],
