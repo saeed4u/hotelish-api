@@ -23,4 +23,8 @@ trait Constants
 
     protected static $USER_ACCOUNT_BLOCKED_TOO_MANY_LOGIN_ATTEMPTS = 3;
 
+
+    public static $ACTIVE = 'active';
+    public static $NOT_ACTIVE = 'not-active';
+
 }

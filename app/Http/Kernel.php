@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\BookingMiddleware;
+use App\Http\Middleware\DeviceMiddleware;
 use App\Http\Middleware\PricingMiddleware;
 use App\Http\Middleware\RequestResponseMiddleware;
 use App\Http\Middleware\RoomMiddleware;
@@ -68,12 +69,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'device' => DeviceMiddleware::class,
         'req.log' => RequestResponseMiddleware::class,
         'user.is.admin' => UserIsAdminMiddleware::class,
         'pricing' => PricingMiddleware::class,
-        'room-type'=> RoomTypeMiddleware::class,
-        'room'=> RoomMiddleware::class,
-        'booking'=> BookingMiddleware::class,
+        'room-type' => RoomTypeMiddleware::class,
+        'room' => RoomMiddleware::class,
+        'booking' => BookingMiddleware::class,
 
     ];
 }
