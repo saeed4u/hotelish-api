@@ -9,9 +9,13 @@
 namespace App\Service;
 
 
+use App\Http\Resources\UserResource;
 use App\Repo\AuthRepo;
 use App\Utils\ApiResponse;
 use App\Utils\Logging;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class AuthService
 {
@@ -32,7 +36,7 @@ class AuthService
 
     /**
      * @param array $registrationData
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function registerCustomer(array $registrationData)
     {
@@ -48,7 +52,7 @@ class AuthService
 
     /**
      * @param array $loginData
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     * @return ResponseFactory|JsonResponse|Response
      */
     public function login(array $loginData)
     {
@@ -58,7 +62,7 @@ class AuthService
                 if ($user->status === static::$USER_ACCOUNT_BLOCKED_TOO_MANY_LOGIN_ATTEMPTS) {
                     return $this->forbidden('Sorry, your account has been temporarily blocked. Please contact our support to get it resolved');
                 }
-                return $this->success('Logged in successfully', array('user' => $user));
+                return $this->success('Logged in successfully', ['user' => new UserResource($user)]);
             }
             return $this->badRequest('Invalid credentials');
         } catch (\Exception $exception) {
@@ -68,7 +72,7 @@ class AuthService
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function logout()
     {

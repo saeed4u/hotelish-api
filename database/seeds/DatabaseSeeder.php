@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
 
         Schema::disableForeignKeyConstraints();
         $this->call(AdminUserSeeder::class);
-        $this->call(CountrySeeder::class);
+      /*  $this->call(CountrySeeder::class);
         $this->call(HotelSeeder::class);
         $this->call(RoomTypeSeeder::class);
         $this->call(PricingSeeder::class);
-        $this->call(RoomSeeder::class);
+        $this->call(RoomSeeder::class);*/
         $this->call(BookingSeeder::class);
     }
 }

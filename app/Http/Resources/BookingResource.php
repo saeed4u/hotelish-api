@@ -9,7 +9,7 @@ class BookingResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -17,11 +17,10 @@ class BookingResource extends JsonResource
         return [
             'id' => $this->id,
             'room' => new  RoomResource($this->room),
-            'user' => new UserResource($this->user),
             'pricing' => new PricingResource($this->pricing),
             'total_nights' => $this->total_nights,
             'total_price' => number_format($this->total_price / 100, 2),
-            'currency' => '$',
+            'currency' => $this->currency,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
             'customer_email' => $this->customer_email,
