@@ -14,7 +14,7 @@ class ChangeRoomTypeNameToBeUniqueOfRoomTable extends Migration
     public function up()
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->string('name',200)->change()->unique();
+            $table->string('name',200)->unique()->change();
         });
     }
 
