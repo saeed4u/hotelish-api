@@ -51,7 +51,7 @@ return [
         ],
         'device' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/device.log'),
+            'path' => storage_path('logs/device/device.log'),
             'level' => 'debug',
             'days' => 7,
         ],
