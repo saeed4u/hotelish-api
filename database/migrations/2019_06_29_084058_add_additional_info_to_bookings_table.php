@@ -17,7 +17,7 @@ class AddAdditionalInfoToBookingsTable extends Migration
             $table->unsignedInteger('total_nights');
             $table->decimal('total_price');
             //always USD
-            $table->string('currency')->default('USD');
+            $table->string('currency')->default('€');
             $table->string('customer_email');
             $table->string('customer_name');
         });

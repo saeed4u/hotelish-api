@@ -15,7 +15,7 @@ class CreateRoomTypesTable extends Migration
     {
         Schema::create('room_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name',200);
             $table->unsignedInteger('added_by')->nullable();
             $table->foreign('added_by')->references('id')->on('users')->onDelete('SET NULL');
             $table->softDeletes();
