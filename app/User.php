@@ -77,8 +77,9 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function getNameAttribute(){
-        return $this->first_name .' '.$this->last_name;
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 
 
@@ -98,5 +99,9 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserOnDevice::class)->with('device')->where('status_code', Constants::$ACTIVE);
     }
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 
 }
