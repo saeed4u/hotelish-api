@@ -16,7 +16,7 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('imei');
-            $table->string('fcm_token',255)->unique();
+            $table->string('fcm_token',255);
             $table->string('app_version');
             $table->string('os');
             $table->string('os_version')->default('');
