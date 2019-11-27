@@ -21,7 +21,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
 
     Route::group(['prefix' => 'device'], function () {
         Route::post('register', 'DeviceController@registerDevice');
-        Route::post('update-fcm-token', 'DeviceController@updteFcmToken')->middleware('device');
+        Route::post('update-fcm-token', 'DeviceController@updateFcmToken')->middleware('device');
     });
 
     Route::group(['middleware' => ['device', 'api.auth']], function () {
