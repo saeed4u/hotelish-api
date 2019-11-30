@@ -39,7 +39,7 @@ class RoomService extends CrudService
             $room->name = $payload['name'];
             $room->room_type_id = $payload['room_type_id'];
             $room->added_by = auth()->id();
-            $room->hotel_id = Hotel::first()->id;
+            $room->hotel_id = $_REQUEST['hotel']->id;
             if ($this->repo->create($room)) {
                 return $this->success('Room created successfully', ['room' => new RoomResource($room->refresh())]);
             }
@@ -55,7 +55,7 @@ class RoomService extends CrudService
      */
     public function getRoom($roomId)
     {
-        return $this->success('Room retrieved', new RoomResource(Room::find($roomId)));
+        return $this->success('Room retrieved', ['room' => new RoomResource($_REQUEST['room'])]);
     }
 
     /**
@@ -63,7 +63,7 @@ class RoomService extends CrudService
      */
     public function getAll()
     {
-        $rooms = Room::paginate(15);
+        $rooms = $_REQUEST['hotel']->rooms;
         return $this->success('Rooms retrieved', ['rooms' => RoomResource::collection($rooms)]);
     }
 
@@ -105,7 +105,7 @@ class RoomService extends CrudService
      * @param UploadedFile $image
      * @return \Illuminate\Http\JsonResponse
      */
-    public function addRoomImage($room,UploadedFile $image)
+    public function addRoomImage($room, UploadedFile $image)
     {
         try {
 
@@ -113,7 +113,7 @@ class RoomService extends CrudService
             $image = new RoomImage();
             $image->image = $path;
             $image->room_id = $room->id;
-            if($this->repo->create($image)) {
+            if ($this->repo->create($image)) {
                 return $this->success();
             }
         } catch (Exception $exception) {

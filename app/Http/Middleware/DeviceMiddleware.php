@@ -44,6 +44,7 @@ class DeviceMiddleware
             }
         }
 
-        return $this->badRequest('Device ID is not valid');
+        return $next($request);
+       // return $this->badRequest('Device ID is not valid');
     }
 }

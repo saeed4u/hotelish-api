@@ -22,6 +22,43 @@ class AuthRepoImpl implements AuthRepo
     use Logging, Constants;
 
     /**
+     * @param Model $model
+     * @param $attributes
+     * @return bool
+     */
+    function update(Model $model, array $attributes): bool
+    {
+        return $model->update($attributes);
+    }
+
+    /**
+     * @param $email
+     * @param $password
+     * @param string $type
+     * @return User
+     */
+    function register($email, $password, $type = 'customer')
+    {
+        $user = new User();
+        $user->email = $email;
+        $user->password = Hash::make($password);
+        $user->user_type = $type;
+        if ($this->create($user)) {
+            return $this->login($email, $password);
+        }
+        return null;
+    }
+
+    /**
+     * @param Model $model
+     * @return boolean
+     */
+    function create(Model $model): bool
+    {
+        return $model->save();
+    }
+
+    /**
      * @param $email
      * @param $password
      * @param string $ip
@@ -63,43 +100,6 @@ class AuthRepoImpl implements AuthRepo
             $user->save();
         }
         return null;
-    }
-
-    /**
-     * @param Model $model
-     * @param $attributes
-     * @return bool
-     */
-    function update(Model $model,array $attributes): bool
-    {
-        return $model->update($attributes);
-    }
-
-    /**
-     * @param $email
-     * @param $password
-     * @param string $type
-     * @return User
-     */
-    function register($email, $password, $type = 'customer')
-    {
-        $user = new User();
-        $user->email = $email;
-        $user->password = Hash::make($password);
-        $user->user_type = $type;
-        if ($this->create($user)) {
-            return $user;
-        }
-        return null;
-    }
-
-    /**
-     * @param Model $model
-     * @return boolean
-     */
-    function create(Model $model): bool
-    {
-        return $model->save();
     }
 
     /**

@@ -41,8 +41,8 @@ class AuthService
     public function registerCustomer(array $registrationData)
     {
         try {
-            if ($this->baseRepo->register($registrationData['email'], $registrationData['password'])) {
-                return $this->success('Registration successful');
+            if ($user = $this->baseRepo->register($registrationData['email'], $registrationData['password'])) {
+                return $this->success('Registration successful', ['user' => new UserResource($user)]);
             }
         } catch (\Exception $exception) {
             $this->logException($exception);

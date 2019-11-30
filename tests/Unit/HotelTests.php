@@ -26,7 +26,7 @@ class HotelTests extends TestCase
         /**
          * @var JsonResponse
          */
-        $createdHotel = $this->hotelService->getHotel();
+        $createdHotel = $this->hotelService->getHotels();
         self::assertEquals(200, $createdHotel->status());
     }
 

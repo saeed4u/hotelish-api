@@ -15,12 +15,16 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $baseData = [
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'token' => $this->token,
-            'bookings' => BookingResource::collection($this->bookings)
         ];
+        if ($this->type === 'customer') {
+            array_merge($baseData,
+                ['bookings' => BookingResource::collection($this->bookings)]);
+        }
+        return $baseData;
     }
 }

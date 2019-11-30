@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookingRequest;
 use App\Service\BookingService;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
@@ -47,6 +48,10 @@ class BookingController extends Controller
     public function deleteBooking()
     {
         return $this->service->deleteBooking($_REQUEST['booking']);
+    }
+
+    public function getUserBookings(Request $request){
+        return $this->service->getUserBookings($request->user('api'));
     }
 
 }

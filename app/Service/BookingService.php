@@ -18,6 +18,7 @@ use App\Utils\ApiResponse;
 use App\Utils\Logging;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 
 class BookingService
 {
@@ -38,7 +39,7 @@ class BookingService
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function getAll()
     {
@@ -48,7 +49,7 @@ class BookingService
 
     /**
      * @param array $payload
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function addBooking(array $payload)
     {
@@ -116,7 +117,7 @@ class BookingService
     /**
      * @param Booking $booking
      * @param array $payload
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function editBooking($booking, array $payload)
     {
@@ -175,9 +176,10 @@ class BookingService
 
     /**
      * @param $booking
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function deleteBooking($booking){
+    public function deleteBooking($booking)
+    {
         try {
             if ($this->repo->delete($booking)) {
                 return $this->success();
@@ -186,6 +188,16 @@ class BookingService
             $this->logException($exception);
         }
         return $this->badGateway();
+    }
+
+    /**
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function getUserBookings($user)
+    {
+        return $this->success('Bookings retrieved',
+            ['bookings' => BookingResource::collection($user->bookings)]);
     }
 
 }

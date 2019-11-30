@@ -37,8 +37,13 @@ class HotelService
         $this->repo = $repo;
     }
 
+    public function addHotel(array $payload)
+    {
+        $hotel = Hotel::create($payload);
+        return $this->success('Hotel created', ['hotel' => new HotelResource($hotel)]);
+    }
 
-    public function getHotel()
+    public function getHotels()
     {
         try {
             $queryBuilder = Hotel::with(['country', 'rooms', 'images']);
@@ -46,8 +51,8 @@ class HotelService
              * @var Collection $hotelCollection
              */
             $hotelCollection = $this->repo->read($queryBuilder);
-            return $this->success('Hotel retrieved successfully',
-                ['hotels' => HotelResource::collection($hotelCollection->get())]);
+            return $this->success('Hotels retrieved successfully',
+                ['hotels' => HotelResource::collection($hotelCollection)]);
         } catch (\Exception $exception) {
             $this->logException($exception);
         }
@@ -60,7 +65,7 @@ class HotelService
             /**
              * @var Hotel $hotel
              */
-            $hotel = Hotel::first();
+            $hotel = $_REQUEST['hotel'];
             if ($this->repo->update($hotel, $payload)) {
                 return $this->success('Hotel updated successfully', ['hotel' => $hotel->refresh()]);
             }
@@ -75,11 +80,11 @@ class HotelService
         try {
 
             $path = $image->store('public/hotel-images');
-            $hotel = Hotel::first();
+            $hotel = $_REQUEST['hotel'];
             $image = new HotelImage();
             $image->image = $path;
             $image->hotel_id = $hotel->id;
-            if($this->repo->create($image)) {
+            if ($this->repo->create($image)) {
                 return $this->success();
             }
         } catch (Exception $exception) {

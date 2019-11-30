@@ -24,63 +24,77 @@ Route::group(['prefix' => 'v1', 'middleware' => 'req.log'], function () {
         Route::post('update-fcm-token', 'DeviceController@updateFcmToken')->middleware('device');
     });
 
-    Route::group(['middleware' => ['device', 'api.auth']], function () {
+    Route::group(['middleware' => 'api.auth'], function () {
+        Route::group(['prefix' => 'hotels'], function () {
 
-        Route::group(['prefix' => 'hotel'], function () {
-            Route::get('', 'HotelController@getHotel');
-            Route::post('image', 'HotelController@addHotelImage')->middleware('user.is.admin');
-            Route::patch('', 'HotelController@updateHotel')->middleware('user.is.admin');
-        });
+            Route::get('', 'HotelController@getHotels');
+            Route::group(['middleware' => 'user.is.admin'], function () {
+                Route::post('add', 'HotelController@addHotel');
+                Route::group(['prefix' => '{id}', 'middleware' => ['hotel']], function () {
 
-        //rooms
-        Route::group(['prefix' => 'room'], function () {
-            Route::get('', 'RoomController@getRooms');
-            Route::post('', 'RoomController@addRoom')->middleware('user.is.admin');
+                    Route::post('image', 'HotelController@addHotelImage');
+                    Route::patch('update', 'HotelController@updateHotel');
 
-            Route::group(['prefix' => '/{id}', 'middleware' => 'room'], function () {
-                Route::get('', 'RoomController@getRoom');
-                Route::group(['middleware' => 'user.is.admin'], function () {
-                    Route::patch('', 'RoomController@updateRoom');
-                    Route::delete('', 'RoomController@deleteRoom');
-                    Route::post('image', 'RoomController@addRoomImage');
+                    //rooms
+                    Route::group(['prefix' => 'rooms'], function () {
+                        Route::get('', 'RoomController@getRooms');
+                        Route::post('', 'RoomController@addRoom')->middleware('user.is.admin');
+                        Route::group(['prefix' => '/{roomId}', 'middleware' => 'room'], function () {
+                            Route::get('', 'RoomController@getRoom');
+                            Route::group(['middleware' => 'user.is.admin'], function () {
+                                Route::patch('', 'RoomController@updateRoom');
+                                Route::delete('', 'RoomController@deleteRoom');
+                                Route::post('image', 'RoomController@addRoomImage');
+                            });
+                        });
+                    });
+
+                    //room types
+                    Route::group(['prefix' => 'room-type'], function () {
+                        Route::get('', 'RoomTypeController@getRoomTypes');
+                        Route::post('', 'RoomTypeController@addRoomType')->middleware('user.is.admin');
+
+                        Route::group(['prefix' => '/{typeId}', 'middleware' => 'room-type'], function () {
+                            Route::get('/', 'RoomTypeController@getRoomType');
+                            Route::patch('/', 'RoomTypeController@updateRoomType')->middleware('user.is.admin');
+                            Route::delete('/', 'RoomTypeController@deleteRoomType')->middleware('user.is.admin');
+                        });
+                    });
+
+                    //pricing
+                    Route::group(['prefix' => 'pricing', 'middleware' => 'user.is.admin'], function () {
+                        Route::get('', 'PricingController@getPricings');
+                        Route::post('', 'PricingController@addPricing');
+
+                        Route::group(['prefix' => '/{pricingId}', 'middleware' => 'pricing'], function () {
+                            Route::get('', 'PricingController@getPricing');
+                            Route::patch('', 'PricingController@updatePricing');
+                            Route::delete('}', 'PricingController@deletePricing');
+                        });
+                    });
+
+                    //booking
+                    Route::group(['prefix' => 'booking'], function () {
+                        Route::get('', 'BookingController@getBookings');
+                        Route::post('', 'BookingController@addBooking');
+
+                        Route::group(['prefix' => '/{bookingId}', 'middleware' => 'booking'], function () {
+                            Route::patch('', 'BookingController@updateBooking');
+                            Route::delete('', 'BookingController@deleteBooking');
+                        });
+                    });
+
                 });
             });
         });
 
-        //room types
-        Route::group(['prefix' => 'room-type'], function () {
-            Route::get('', 'RoomTypeController@getRoomTypes');
-            Route::post('', 'RoomTypeController@addRoomType')->middleware('user.is.admin');
-
-            Route::group(['middleware' => 'room-type'], function () {
-                Route::get('/{id}', 'RoomTypeController@getRoomType');
-                Route::patch('/{id}', 'RoomTypeController@updateRoomType')->middleware('user.is.admin');
-                Route::delete('/{id}', 'RoomTypeController@deleteRoomType')->middleware('user.is.admin');
+        Route::group(['middleware' => ['device']], function () {
+            //rooms
+            Route::group(['prefix' => 'user', 'middleware' => 'user.is.customer'], function () {
+                Route::post('bookings', 'BookingController@addBooking');
+                Route::get('bookings', 'BookingController@getUserBookings');
             });
         });
 
-        //pricing
-        Route::group(['prefix' => 'pricing', 'middleware' => 'user.is.admin'], function () {
-            Route::get('', 'PricingController@getPricings');
-            Route::post('', 'PricingController@addPricing');
-
-            Route::group(['middleware' => 'pricing'], function () {
-                Route::get('/{id}', 'PricingController@getPricing');
-                Route::patch('/{id}', 'PricingController@updatePricing');
-                Route::delete('/{id}', 'PricingController@deletePricing');
-            });
-        });
-
-        //booking
-        Route::group(['prefix' => 'booking'], function () {
-            Route::get('', 'BookingController@getBookings');
-            Route::post('', 'BookingController@addBooking');
-
-            Route::group(['middleware' => 'booking'], function () {
-                Route::patch('/{id}', 'BookingController@updateBooking');
-                Route::delete('/{id}', 'BookingController@deleteBooking');
-            });
-        });
     });
-
 });
