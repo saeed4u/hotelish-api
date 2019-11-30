@@ -16,7 +16,8 @@ class Hotel extends Model
         'state',
         'city',
         'zip_code',
-        'phone_number'
+        'phone_number',
+        'country_id'
     ];
 
     protected $hidden = ['created_at','country_id','updated_at','deleted_at'];

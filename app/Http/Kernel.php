@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\BookingMiddleware;
 use App\Http\Middleware\DeviceMiddleware;
+use App\Http\Middleware\HotelMiddleware;
 use App\Http\Middleware\PricingMiddleware;
 use App\Http\Middleware\RequestResponseMiddleware;
 use App\Http\Middleware\RoomMiddleware;
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
         'room-type' => RoomTypeMiddleware::class,
         'room' => RoomMiddleware::class,
         'booking' => BookingMiddleware::class,
+        'hotel' => HotelMiddleware::class,
 
     ];
 }

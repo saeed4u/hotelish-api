@@ -19,9 +19,9 @@ class PricingMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $pricing = Pricing::find($request->id);
+        $pricing = Pricing::find($request->pricingId);
         if (!$pricing) {
-            return $this->notFound("Pricing with $request->id not found");
+            return $this->notFound("Pricing with $request->pricingId not found");
         }
         $_REQUEST['pricing'] = $pricing;
         return $next($request);

@@ -19,9 +19,9 @@ class RoomMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $room = Room::find($request->id);
+        $room = Room::find($request->roomId);
         if (!$room) {
-            return $this->notFound("Room with $request->id not found");
+            return $this->notFound("Room with $request->roomId not found");
         }
         $_REQUEST['room'] = $room;
         return $next($request);
