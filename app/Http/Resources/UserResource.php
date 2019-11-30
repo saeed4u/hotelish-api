@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'token' => $this->token,
         ];
-        if ($this->type === 'customer') {
+        if ($this->user_type === 'customer') {
             array_merge($baseData,
                 ['bookings' => BookingResource::collection($this->bookings)]);
         }
