@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'token' => $this->token,
         ];
         if ($this->user_type === 'customer') {
-            array_merge($baseData,
+            $baseData = array_merge($baseData,
                 ['bookings' => BookingResource::collection($this->bookings)]);
         }
         return $baseData;
