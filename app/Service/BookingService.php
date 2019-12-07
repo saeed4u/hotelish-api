@@ -104,8 +104,6 @@ class BookingService
                     return $this->success('Booking has been created successfully',
                         ['booking' => new BookingResource($booking->refresh())]);
                 }
-
-
             }
 
         } catch (\Exception $exception) {

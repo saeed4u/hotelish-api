@@ -17,6 +17,7 @@ class RoomTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'price' => $this->pricing->price / 100,
             'added_by' => $this->added_by ? $this->addedBy->name : ''
         ];
     }
