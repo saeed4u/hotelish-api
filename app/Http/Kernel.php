@@ -10,6 +10,7 @@ use App\Http\Middleware\RequestResponseMiddleware;
 use App\Http\Middleware\RoomMiddleware;
 use App\Http\Middleware\RoomTypeMiddleware;
 use App\Http\Middleware\UserIsAdminMiddleware;
+use App\Http\Middleware\UserIsCustomerMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -73,7 +74,7 @@ class Kernel extends HttpKernel
         'device' => DeviceMiddleware::class,
         'req.log' => RequestResponseMiddleware::class,
         'user.is.admin' => UserIsAdminMiddleware::class,
-        'user.is.customer' => UserIsAdminMiddleware::class,
+        'user.is.customer' => UserIsCustomerMiddleware::class,
         'pricing' => PricingMiddleware::class,
         'room-type' => RoomTypeMiddleware::class,
         'room' => RoomMiddleware::class,
