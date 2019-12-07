@@ -73,6 +73,7 @@ class Kernel extends HttpKernel
         'device' => DeviceMiddleware::class,
         'req.log' => RequestResponseMiddleware::class,
         'user.is.admin' => UserIsAdminMiddleware::class,
+        'user.is.customer' => UserIsAdminMiddleware::class,
         'pricing' => PricingMiddleware::class,
         'room-type' => RoomTypeMiddleware::class,
         'room' => RoomMiddleware::class,
