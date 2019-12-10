@@ -27,8 +27,8 @@ class BookingRequest extends FormRequest
         return [
             'room_id' => 'required|exists:rooms,id',
             'user_id' => 'required_with_out:name,email|exists:users,id',
-            'name' => 'required_unless:user_id,null',
-            'email' => 'required_unless:user_id,null|email',
+            'name' => 'required_if:user_id,null',
+            'email' => 'required_if:user_id,null|email',
             'start_date' => 'required|date|after:yesterday',
             'end_date' => 'required|date|after_or_equal:start_date',
         ];
