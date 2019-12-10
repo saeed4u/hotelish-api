@@ -22,6 +22,6 @@ class UserIsCustomerMiddleware
         if (strtolower($user->type) === 'customer') {
             return $next($request);
         }
-        return $this->forbidden();
+        return $this->forbidden('You are not authorised to make this request');
     }
 }
