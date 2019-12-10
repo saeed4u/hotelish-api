@@ -19,7 +19,7 @@ class UserIsCustomerMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user('api');
-        if (strtolower($user->type) === 'customer') {
+        if (strtolower($user->user_type) === 'customer') {
             return $next($request);
         }
         return $this->forbidden('You are not authorised to make this request');
