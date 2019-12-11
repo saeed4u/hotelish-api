@@ -9,6 +9,7 @@
         "ext-json": "*",
         "barryvdh/laravel-cors": "^0.11.3",
         "doctrine/dbal": "^2.9",
+        "edujugon/push-notification": "^v3.0.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
