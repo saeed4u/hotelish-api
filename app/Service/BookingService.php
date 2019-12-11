@@ -96,6 +96,7 @@ class BookingService
                     $user = $this->repo->read(User::whereKey($payload['user_id']))->first();
                     $booking->customer_name = $user->name;
                     $booking->customer_email = $user->email;
+                    $booking->user_id = $payload['user_id'];
                 } else {
                     $booking->customer_name = $payload['name'];
                     $booking->customer_email = $payload['email'];
