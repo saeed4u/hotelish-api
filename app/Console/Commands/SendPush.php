@@ -12,7 +12,7 @@ class SendPush extends Command
      *
      * @var string
      */
-    protected $signature = 'send:push {title} {message}';
+    protected $signature = 'send:push {--title} {--message}';
 
     /**
      * The console command description.
@@ -38,6 +38,6 @@ class SendPush extends Command
      */
     public function handle()
     {
-        event(new PushNotification($this->argument('title'),$this->argument('message')));
+        event(new PushNotification($this->option('title'),$this->option('message')));
     }
 }
