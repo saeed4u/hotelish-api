@@ -12,7 +12,7 @@ class SendPush extends Command
      *
      * @var string
      */
-    protected $signature = 'send:push {--title} {--message}';
+    protected $signature = 'send:push {--title=} {--message=}';
 
     /**
      * The console command description.
