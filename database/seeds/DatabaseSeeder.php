@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
 
         Schema::disableForeignKeyConstraints();
-        // $this->call(AdminUserSeeder::class);
+         $this->call(AdminUserSeeder::class);
         /*  $this->call(CountrySeeder::class);
           $this->call(HotelSeeder::class);
           $this->call(RoomTypeSeeder::class);
